@@ -10,6 +10,7 @@ export type SitePage = {
   h1: string;
   intro: string;
   sections: { title: string; body: string }[];
+  formulaCards?: { label: string; formula: string; note: string }[];
   faqs?: { question: string; answer: string }[];
   sources?: { label: string; url: string }[];
 };
@@ -70,6 +71,23 @@ export const pages: SitePage[] = [
           "La herramienta no descuenta ISR, no calcula comisiones variables y asume prestaciones minimas. Si tienes vacaciones acumuladas de anos anteriores, bonos o prestaciones superiores, agrega esos conceptos por separado antes de aceptar un pago.",
       },
     ],
+    formulaCards: [
+      {
+        label: "Salario pendiente",
+        formula: "salario diario x dias pendientes de pago",
+        note: "Solo incluye dias ya trabajados que aun no aparecen pagados en nomina.",
+      },
+      {
+        label: "Aguinaldo proporcional",
+        formula: "salario diario x 15 x dias trabajados en el ano / dias del ano",
+        note: "Usa 15 dias como minimo legal; puede ser mayor si tu contrato ofrece mas.",
+      },
+      {
+        label: "Vacaciones y prima",
+        formula: "vacaciones proporcionales x salario diario + 25% de prima",
+        note: "La prima vacacional minima se estima con 25% sobre vacaciones.",
+      },
+    ],
     faqs: commonFaq,
     sources: officialSources,
   },
@@ -100,6 +118,23 @@ export const pages: SitePage[] = [
           "Si el patron argumenta una causa de rescision, si firmaste documentos bajo presion o si hay salarios caidos, convenio o juicio, no uses solo esta cifra. Toma el resultado como una base para revisar tu caso con PROFEDET o un especialista.",
       },
     ],
+    formulaCards: [
+      {
+        label: "Indemnizacion constitucional",
+        formula: "salario diario x 90 dias",
+        note: "Se usa en estimaciones de despido injustificado con indemnizacion.",
+      },
+      {
+        label: "20 dias por ano",
+        formula: "salario diario x 20 x anos trabajados",
+        note: "El resultado depende de la antiguedad reconocida y del escenario legal.",
+      },
+      {
+        label: "Prima de antiguedad",
+        formula: "salario topado x 12 x anos trabajados",
+        note: "La calculadora aplica un tope de dos salarios minimos diarios.",
+      },
+    ],
     faqs: commonFaq,
     sources: officialSources,
   },
@@ -123,6 +158,18 @@ export const pages: SitePage[] = [
         title: "Cuando se usa",
         body:
           "Sirve para estimar el aguinaldo al cierre del ano o cuando la relacion laboral termina antes de diciembre. El articulo 87 de la LFT reconoce pago proporcional para quien no cumplio el ano completo.",
+      },
+    ],
+    formulaCards: [
+      {
+        label: "Aguinaldo anual minimo",
+        formula: "salario diario x 15 dias",
+        note: "La LFT reconoce 15 dias como minimo para trabajadores del sector privado.",
+      },
+      {
+        label: "Aguinaldo proporcional",
+        formula: "salario diario x 15 x dias trabajados / dias del ano",
+        note: "En ano bisiesto el divisor es 366; en otros anos, 365.",
       },
     ],
     faqs: commonFaq,
@@ -155,6 +202,23 @@ export const pages: SitePage[] = [
           "La calculadora estima vacaciones proporcionales del ciclo de servicio actual. Si tienes dias devengados de ciclos anteriores que no se han pagado o disfrutado, revisalos por separado con tus recibos y contrato.",
       },
     ],
+    formulaCards: [
+      {
+        label: "Dias proporcionales",
+        formula: "dias anuales segun antiguedad x dias del ciclo trabajado / 365",
+        note: "La tabla inicia con 12 dias el primer ano y crece por antiguedad.",
+      },
+      {
+        label: "Importe de vacaciones",
+        formula: "dias proporcionales x salario diario",
+        note: "El salario usado debe corresponder al dato bruto que capturas.",
+      },
+      {
+        label: "Prima vacacional",
+        formula: "importe de vacaciones x 25%",
+        note: "25% es el minimo legal; algunas empresas pagan un porcentaje mayor.",
+      },
+    ],
     faqs: commonFaq,
     sources: officialSources,
   },
@@ -178,6 +242,18 @@ export const pages: SitePage[] = [
         title: "Uso practico",
         body:
           "El resultado es orientativo. Empresas y sistemas de nomina pueden usar prestaciones superiores, variables salariales o reglas de seguridad social adicionales.",
+      },
+    ],
+    formulaCards: [
+      {
+        label: "Factor basico",
+        formula: "1 + aguinaldo diario + vacaciones con prima diaria",
+        note: "Es una aproximacion con prestaciones minimas y antiguedad capturada.",
+      },
+      {
+        label: "SDI estimado",
+        formula: "salario diario x factor de integracion",
+        note: "No incluye variables, bonos, comisiones ni prestaciones superiores.",
       },
     ],
     faqs: commonFaq,
@@ -213,6 +289,8 @@ export const pages: SitePage[] = [
   legal("privacy-policy", "Politica de privacidad", "Informacion sobre privacidad, analitica y publicidad futura."),
   legal("terms", "Terminos de uso", "Condiciones generales para usar este sitio y sus herramientas."),
   legal("disclaimer", "Aviso legal", "Limitaciones importantes sobre calculos laborales, legales y fiscales."),
+  legal("metodologia", "Metodologia de calculo", "Como calculamos estimaciones laborales, que fuentes usamos y que limitaciones aplican."),
+  legal("politica-editorial", "Politica editorial", "Criterios editoriales, actualizacion de contenido y manejo de correcciones."),
 ];
 
 export const toolPages = pages.filter((page) => page.kind === "tool");
@@ -759,6 +837,50 @@ function getLegalSections(slug: string): { title: string; body: string }[] {
       title: "Verificacion final",
       body:
         "Usa el resultado para pedir un desglose y detectar diferencias. La verificacion final debe hacerse con documentos del caso y, si corresponde, con una autoridad o especialista.",
+    },
+  ],
+  metodologia: [
+    {
+      title: "Base de calculo",
+      body:
+        "Las herramientas usan datos capturados por el usuario y reglas generales aplicables en Mexico. Priorizamos conceptos verificables: salario pendiente, aguinaldo proporcional, vacaciones, prima vacacional, indemnizacion y prima de antiguedad cuando corresponde.",
+    },
+    {
+      title: "Fuentes consultadas",
+      body:
+        "El contenido se apoya en la Ley Federal del Trabajo publicada por la Camara de Diputados, orientacion publica de PROFEDET y salarios minimos publicados por CONASAMI cuando se requiere un tope de referencia.",
+    },
+    {
+      title: "Que no calculamos",
+      body:
+        "No calculamos ISR exacto, salarios caidos, intereses, multas, PTU, horas extra, comisiones variables no documentadas, prestaciones superiores ni efectos de convenios o resoluciones laborales.",
+    },
+    {
+      title: "Uso recomendado",
+      body:
+        "Usa los resultados como una primera estimacion para pedir desglose y revisar documentos. Si existe conflicto, monto relevante o presion para firmar, busca apoyo de PROFEDET, autoridad laboral o especialista.",
+    },
+  ],
+  "politica-editorial": [
+    {
+      title: "Objetivo editorial",
+      body:
+        "Publicamos calculadoras y guias practicas para que trabajadores en Mexico entiendan conceptos laborales frecuentes antes de revisar un pago o documento.",
+    },
+    {
+      title: "Criterios de publicacion",
+      body:
+        "Priorizamos temas con utilidad practica, busquedas claras, formulas verificables y fuentes publicas. Evitamos presentar estimaciones como asesorias personalizadas o dictamen legal.",
+    },
+    {
+      title: "Actualizaciones",
+      body:
+        "Revisamos contenido cuando cambian reglas relevantes, salarios minimos, criterios oficiales o cuando detectamos errores. Cada pagina muestra una fecha general de actualizacion del sitio.",
+    },
+    {
+      title: "Correcciones",
+      body:
+        "Si detectas un error, envia la pagina, el dato observado y una fuente que permita verificarlo. Revisaremos correcciones dando prioridad a errores de formula, fuente o interpretacion.",
     },
   ],
   };

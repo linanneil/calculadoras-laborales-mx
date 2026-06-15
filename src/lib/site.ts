@@ -23,8 +23,8 @@ export const formatMxn = (value: number) =>
     maximumFractionDigits: 2,
   }).format(Number.isFinite(value) ? value : 0);
 
-export const updatedDate = "15 de junio de 2026";
-export const updatedIsoDate = "2026-06-15";
+export const updatedDate = "16 de junio de 2026";
+export const updatedIsoDate = "2026-06-16";
 
 export const analytics = {
   gaMeasurementId: import.meta.env.PUBLIC_GA_MEASUREMENT_ID || "",

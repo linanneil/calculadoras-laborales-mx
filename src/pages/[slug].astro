@@ -35,6 +35,22 @@ const related = [...toolPages, ...articlePages].filter((item) => item.slug !== p
         </section>
       ))}
 
+      {page.formulaCards && (
+        <section class="panel formulas">
+          <h2>Formula de calculo</h2>
+          <div class="formula-grid">
+            {page.formulaCards.map((item) => (
+              <article>
+                <span>{item.label}</span>
+                <code>{item.formula}</code>
+                <p>{item.note}</p>
+              </article>
+            ))}
+          </div>
+          <p class="muted">Las formulas muestran la logica base del estimador. El resultado final puede variar por contrato, prestaciones superiores, impuestos o documentos del caso.</p>
+        </section>
+      )}
+
       {page.faqs && (
         <section class="panel">
           <h2>Preguntas frecuentes</h2>
@@ -108,6 +124,49 @@ const related = [...toolPages, ...articlePages].filter((item) => item.slug !== p
 
   .sources li {
     margin: 8px 0;
+  }
+
+  .formulas h2 {
+    margin-bottom: 14px;
+  }
+
+  .formula-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+  }
+
+  .formula-grid article {
+    display: grid;
+    gap: 8px;
+    padding: 16px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: var(--surface-muted);
+  }
+
+  .formula-grid span {
+    font-weight: 800;
+  }
+
+  .formula-grid code {
+    display: block;
+    padding: 10px;
+    border-radius: 6px;
+    background: white;
+    color: var(--accent-dark);
+    white-space: normal;
+  }
+
+  .formula-grid p {
+    margin: 0;
+    color: var(--muted);
+  }
+
+  @media (max-width: 760px) {
+    .formula-grid {
+      grid-template-columns: 1fr;
+    }
   }
 
   .disclaimer {
