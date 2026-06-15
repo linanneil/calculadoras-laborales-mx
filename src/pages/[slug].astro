@@ -1,0 +1,116 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import ToolCalculator from "../components/ToolCalculator.astro";
+import AdPlaceholder from "../components/AdPlaceholder.astro";
+import { articlePages, pages, toolPages } from "../lib/pages";
+import { updatedDate } from "../lib/site";
+
+export function getStaticPaths() {
+  return pages.map((page) => ({
+    params: { slug: page.slug },
+    props: { page },
+  }));
+}
+
+const { page } = Astro.props;
+const related = [...toolPages, ...articlePages].filter((item) => item.slug !== page.slug).slice(0, 4);
+---
+
+<BaseLayout title={page.title} description={page.description} slug={page.slug} faq={page.faqs}>
+  <section class="hero">
+    <div>
+      <p class="eyebrow">{page.kind === "tool" ? "Calculadora gratuita" : page.kind === "legal" ? "Informacion del sitio" : "Guia laboral"}</p>
+      <h1>{page.h1}</h1>
+      <p class="lead">{page.intro}</p>
+    </div>
+    {page.tool ? <ToolCalculator tool={page.tool} /> : <AdPlaceholder />}
+  </section>
+
+  <section class="content">
+    <article class="article-body">
+      {page.sections.map((section) => (
+        <section class="panel">
+          <h2>{section.title}</h2>
+          <p>{section.body}</p>
+        </section>
+      ))}
+
+      {page.faqs && (
+        <section class="panel">
+          <h2>Preguntas frecuentes</h2>
+          {page.faqs.map((faq) => (
+            <details>
+              <summary>{faq.question}</summary>
+              <p>{faq.answer}</p>
+            </details>
+          ))}
+        </section>
+      )}
+
+      {page.sources && (
+        <section class="panel sources">
+          <h2>Fuentes oficiales consultadas</h2>
+          <p>Usamos estas referencias como base editorial. El contenido se resume para hacerlo facil de entender.</p>
+          <ul>
+            {page.sources.map((source) => (
+              <li><a href={source.url} target="_blank" rel="noreferrer">{source.label}</a></li>
+            ))}
+          </ul>
+        </section>
+      )}
+
+      <section class="panel disclaimer">
+        <h2>Aviso importante</h2>
+        <p>
+          Estos calculos son estimaciones informativas para Mexico y fueron actualizados el {updatedDate}. No sustituyen asesoria legal, fiscal o contable.
+        </p>
+      </section>
+    </article>
+    <aside>
+      <AdPlaceholder />
+      <div class="panel related">
+        <h2>Tambien te puede servir</h2>
+        {related.map((item) => <a href={`/${item.slug}`}>{item.h1}</a>)}
+      </div>
+    </aside>
+  </section>
+</BaseLayout>
+
+<style>
+  details {
+    padding: 12px 0;
+    border-bottom: 1px solid var(--line);
+  }
+
+  summary {
+    cursor: pointer;
+    font-weight: 800;
+  }
+
+  aside {
+    display: grid;
+    gap: 16px;
+  }
+
+  .related {
+    display: grid;
+    gap: 10px;
+  }
+
+  .related h2 {
+    font-size: 1.2rem;
+  }
+
+  .sources ul {
+    margin: 10px 0 0;
+    padding-left: 20px;
+  }
+
+  .sources li {
+    margin: 8px 0;
+  }
+
+  .disclaimer {
+    border-color: color-mix(in srgb, var(--warning), var(--line) 65%);
+  }
+</style>

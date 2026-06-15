@@ -1,0 +1,220 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import AdPlaceholder from "../components/AdPlaceholder.astro";
+import ToolCalculator from "../components/ToolCalculator.astro";
+import { SITE } from "../lib/site";
+import { articlePages, toolPages } from "../lib/pages";
+---
+
+<BaseLayout title={`${SITE.name} | Calculadoras laborales para Mexico`} description={SITE.description}>
+  <section class="hero">
+    <div>
+      <p class="eyebrow"><i class="ri-check-line" aria-hidden="true"></i> Herramientas gratuitas en pesos mexicanos (MXN)</p>
+      <h1>Calcula pagos laborales en minutos</h1>
+      <p class="lead">
+        Estimadores gratuitos para finiquito, liquidacion, aguinaldo, vacaciones y salario diario integrado. Resultados en MXN, con formulas explicadas y aviso legal claro.
+      </p>
+      <div class="trust-strip" aria-label="Senales de confianza">
+        <span><i class="ri-shield-check-line" aria-hidden="true"></i> Calculos basados en la Ley Federal del Trabajo</span>
+        <span><i class="ri-lock-line" aria-hidden="true"></i> Tus datos no se almacenan</span>
+        <span><i class="ri-money-dollar-circle-line" aria-hidden="true"></i> Resultados en MXN</span>
+      </div>
+      <div class="hero-actions">
+        <a class="button" href="/calculadora-finiquito">Abrir calculadora de finiquito <i class="ri-arrow-right-line" aria-hidden="true"></i></a>
+        <a class="secondary-link" href="#calculadoras">Ver todas las calculadoras <i class="ri-arrow-right-s-line" aria-hidden="true"></i></a>
+      </div>
+    </div>
+    <ToolCalculator tool="finiquito" />
+  </section>
+
+  <section class="feature-band" aria-label="Beneficios">
+    <article>
+      <i class="ri-calculator-line" aria-hidden="true"></i>
+      <div>
+        <h2>Facil y rapido</h2>
+        <p>Responde unos datos y obten tu resultado en segundos.</p>
+      </div>
+    </article>
+    <article>
+      <i class="ri-book-open-line" aria-hidden="true"></i>
+      <div>
+        <h2>Basado en la LFT</h2>
+        <p>Nuestros calculos explican los conceptos laborales vigentes.</p>
+      </div>
+    </article>
+    <article>
+      <i class="ri-shield-check-line" aria-hidden="true"></i>
+      <div>
+        <h2>Privado y seguro</h2>
+        <p>No guardamos tu informacion. Tus datos son solo tuyos.</p>
+      </div>
+    </article>
+    <article>
+      <i class="ri-pie-chart-2-line" aria-hidden="true"></i>
+      <div>
+        <h2>Siempre actualizado</h2>
+        <p>Actualizamos herramientas cuando cambian reglas relevantes.</p>
+      </div>
+    </article>
+  </section>
+
+  <AdPlaceholder />
+
+  <section id="calculadoras">
+    <h2>Calculadoras</h2>
+    <div class="grid">
+      {toolPages.map((page) => (
+        <article class="card">
+          <h3><a href={`/${page.slug}`}>{page.h1}</a></h3>
+          <p>{page.description}</p>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section class="content">
+    <div>
+      <h2>Guias populares</h2>
+      <div class="grid">
+        {articlePages.slice(0, 6).map((page) => (
+          <article class="card">
+            <h3><a href={`/${page.slug}`}>{page.h1}</a></h3>
+            <p>{page.description}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+    <AdPlaceholder />
+  </section>
+</BaseLayout>
+
+<style>
+  .trust-strip {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px 0;
+    margin: 28px 0;
+    color: var(--text);
+  }
+
+  .trust-strip span {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    max-width: 220px;
+    padding-right: 24px;
+    margin-right: 24px;
+    border-right: 1px solid var(--line);
+    font-size: 0.92rem;
+    line-height: 1.35;
+  }
+
+  .trust-strip span:last-child {
+    border-right: 0;
+  }
+
+  .trust-strip i,
+  .feature-band i {
+    color: var(--accent-dark);
+    font-size: 1.45rem;
+  }
+
+  .hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 18px 28px;
+    margin-top: 22px;
+  }
+
+  .secondary-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    min-height: 54px;
+    color: var(--accent-dark);
+    font-weight: 800;
+  }
+
+  .feature-band {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    margin: 22px -32px 0;
+    padding: 30px 32px;
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    background: var(--surface);
+  }
+
+  .feature-band article {
+    display: grid;
+    grid-template-columns: 42px minmax(0, 1fr);
+    gap: 18px;
+    padding: 0 28px;
+    border-right: 1px solid var(--line);
+  }
+
+  .feature-band article:first-child {
+    padding-left: 0;
+  }
+
+  .feature-band article:last-child {
+    border-right: 0;
+    padding-right: 0;
+  }
+
+  .feature-band h2 {
+    margin-bottom: 6px;
+    color: var(--accent-dark);
+    font-size: 1rem;
+  }
+
+  .feature-band p {
+    color: var(--muted);
+    font-size: 0.92rem;
+  }
+
+  @media (max-width: 980px) {
+    .feature-band {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 22px 0;
+    }
+
+    .feature-band article:nth-child(2) {
+      border-right: 0;
+      padding-right: 0;
+    }
+
+    .feature-band article:nth-child(3) {
+      padding-left: 0;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .trust-strip {
+      display: grid;
+      gap: 12px;
+    }
+
+    .trust-strip span {
+      max-width: 100%;
+      padding-right: 0;
+      margin-right: 0;
+      border-right: 0;
+    }
+
+    .feature-band {
+      grid-template-columns: 1fr;
+      margin-inline: -20px;
+      padding: 24px 20px;
+    }
+
+    .feature-band article,
+    .feature-band article:first-child,
+    .feature-band article:nth-child(3) {
+      padding: 0;
+      border-right: 0;
+    }
+  }
+</style>
