@@ -69,6 +69,10 @@ const today = "2026-06-15";
   } from "../lib/labor";
   import { formatMxn } from "../lib/site";
 
+  type GtagWindow = Window & {
+    gtag?: (command: string, eventName: string, params?: Record<string, string>) => void;
+  };
+
   document.querySelectorAll<HTMLElement>("[data-tool]").forEach((panel) => {
     const form = panel.querySelector<HTMLFormElement>("form");
     const result = panel.querySelector<HTMLElement>(".result");
@@ -122,6 +126,11 @@ const today = "2026-06-15";
     form.addEventListener("submit", (event) => {
       event.preventDefault();
       render();
+      const tool = panel.dataset.tool ?? "unknown";
+      (window as GtagWindow).gtag?.("event", "calculator_submit", {
+        calculator_name: tool,
+        page_path: window.location.pathname,
+      });
     });
 
     render();
