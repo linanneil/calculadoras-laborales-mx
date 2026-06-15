@@ -284,6 +284,16 @@ export const pages: SitePage[] = [
   article("vacaciones-no-disfrutadas-finiquito", "Vacaciones no disfrutadas en finiquito", "Como revisar dias pendientes de vacaciones y prima vacacional al terminar la relacion laboral."),
   article("aguinaldo-por-dias-trabajados", "Aguinaldo por dias trabajados: formula", "Formula proporcional para estimar aguinaldo cuando no se trabajo todo el ano."),
   article("checklist-antes-firmar-finiquito", "Checklist antes de firmar finiquito", "Lista breve de documentos, conceptos y alertas antes de firmar un finiquito o convenio."),
+  article("finiquito-por-renuncia-mexico", "Finiquito por renuncia en Mexico 2026", "Que conceptos revisar si renuncias en Mexico: salario pendiente, aguinaldo, vacaciones y prima vacacional."),
+  article("como-calcular-liquidacion-por-despido", "Como calcular liquidacion por despido en Mexico", "Guia practica para separar indemnizacion, prima de antiguedad y prestaciones adeudadas tras un despido."),
+  article("cuanto-me-toca-de-finiquito", "Cuanto me toca de finiquito en Mexico", "Datos necesarios para estimar cuanto podria corresponderte de finiquito antes de firmar un recibo."),
+  article("finiquito-si-trabaje-6-meses", "Finiquito si trabaje 6 meses en Mexico", "Ejemplo y conceptos proporcionales comunes cuando la relacion laboral duro aproximadamente seis meses."),
+  article("aguinaldo-si-renuncio-antes-de-diciembre", "Aguinaldo si renuncio antes de diciembre", "Como estimar el aguinaldo proporcional cuando sales de la empresa antes del pago anual."),
+  article("vacaciones-si-renuncio", "Vacaciones si renuncio: que pasa con los dias pendientes", "Como revisar vacaciones proporcionales, vacaciones no disfrutadas y prima vacacional al renunciar."),
+  article("me-pueden-obligar-a-firmar-renuncia", "Me pueden obligar a firmar renuncia?", "Senales de alerta si te piden firmar una renuncia y que documentos conviene revisar antes de aceptar."),
+  article("que-pasa-si-no-me-pagan-finiquito", "Que pasa si no me pagan finiquito en Mexico", "Pasos practicos para documentar el adeudo, pedir desglose y buscar orientacion si no recibes tu finiquito."),
+  article("prima-vacacional-en-finiquito", "Prima vacacional en finiquito: como se calcula", "Explicacion de la prima vacacional dentro del finiquito y su relacion con vacaciones proporcionales."),
+  article("liquidacion-con-salario-minimo", "Liquidacion con salario minimo en Mexico", "Como estimar conceptos de liquidacion cuando el salario diario se acerca al salario minimo vigente."),
   legal("about", "Acerca de Calculadoras Laborales MX", "Conoce el objetivo del sitio y el alcance de nuestras herramientas."),
   legal("contact", "Contacto", "Forma de contacto para comentarios, correcciones y solicitudes editoriales."),
   legal("privacy-policy", "Politica de privacidad", "Informacion sobre privacidad, analitica y publicidad futura."),
@@ -722,6 +732,176 @@ function getArticleSections(slug: string): { title: string; body: string }[] {
       title: "Alertas",
       body:
         "Evita firmar recibos en blanco, fechas incorrectas o textos que no entiendes. Si el monto es relevante, pide desglose y tiempo para revisar.",
+    },
+  ],
+  "finiquito-por-renuncia-mexico": [
+    {
+      title: "Conceptos base al renunciar",
+      body:
+        "Cuando renuncias, el finiquito normalmente se concentra en prestaciones ya generadas: salario pendiente, aguinaldo proporcional, vacaciones proporcionales y prima vacacional. La causa de salida no elimina esos conceptos si ya se devengaron.",
+    },
+    {
+      title: "Datos para estimarlo",
+      body:
+        "Necesitas salario diario bruto, fecha de ingreso, ultimo dia trabajado, dias de nomina pendientes y vacaciones ya tomadas. Con esos datos puedes usar la calculadora de finiquito y comparar contra el recibo que te entregue la empresa.",
+    },
+    {
+      title: "Que revisar antes de firmar",
+      body:
+        "Pide que el documento separe cada concepto. Si aparece una cantidad unica, si las fechas no coinciden o si te piden firmar conformidad sin pago inmediato, conviene detenerse y pedir aclaracion por escrito.",
+    },
+  ],
+  "como-calcular-liquidacion-por-despido": [
+    {
+      title: "Primero identifica el escenario",
+      body:
+        "La liquidacion se revisa cuando existe despido o separacion con indemnizacion. No basta con saber el monto total: importa si la empresa reconoce despido, si ofrece convenio o si intenta presentarlo como renuncia.",
+    },
+    {
+      title: "Separa indemnizacion y prestaciones",
+      body:
+        "Una estimacion completa puede distinguir tres meses de salario, 20 dias por ano, prima de antiguedad y finiquito. Separar esos bloques ayuda a detectar si solo te estan pagando prestaciones proporcionales.",
+    },
+    {
+      title: "Usa fechas y salario documentados",
+      body:
+        "Captura fecha real de ingreso y salida, salario diario y prestaciones pendientes. Si el salario tiene comisiones o bonos, reune recibos antes de aceptar una base diaria que parezca menor.",
+    },
+  ],
+  "cuanto-me-toca-de-finiquito": [
+    {
+      title: "La respuesta depende de tus datos",
+      body:
+        "No existe una cantidad universal de finiquito. Dos personas con el mismo salario pueden recibir montos distintos por fechas de ingreso, vacaciones tomadas, dias pendientes o prestaciones superiores.",
+    },
+    {
+      title: "Calcula por partes",
+      body:
+        "Empieza con salario pendiente, despues aguinaldo proporcional, vacaciones proporcionales y prima vacacional. Ver cada parte evita que un total aproximado o una regla de meses o quincenas te confunda.",
+    },
+    {
+      title: "Compara con la oferta",
+      body:
+        "Si la empresa ya te dio un monto, pide desglose y revisa que salario diario uso. Una diferencia pequena puede venir de redondeos; una diferencia grande suele requerir revisar fechas, prestaciones o conceptos omitidos.",
+    },
+  ],
+  "finiquito-si-trabaje-6-meses": [
+    {
+      title: "Seis meses generan proporcionales",
+      body:
+        "Trabajar seis meses puede generar aguinaldo proporcional, vacaciones proporcionales, prima vacacional y salario pendiente. No necesitas cumplir un ano completo para revisar esos conceptos proporcionales.",
+    },
+    {
+      title: "Ejemplo de lectura",
+      body:
+        "Si trabajaste de enero a junio, el aguinaldo proporcional se estima con los dias trabajados dentro del ano. Las vacaciones se estiman con base en la parte trabajada del ciclo de servicio y la tabla vigente.",
+    },
+    {
+      title: "Errores frecuentes",
+      body:
+        "No calcules con seis meses exactos si las fechas reales son distintas. En relaciones cortas, unos dias cambian el resultado, sobre todo cuando tambien hay dias pendientes de nomina.",
+    },
+  ],
+  "aguinaldo-si-renuncio-antes-de-diciembre": [
+    {
+      title: "El aguinaldo puede ser proporcional",
+      body:
+        "Si la relacion termina antes de diciembre, el aguinaldo se revisa de forma proporcional por los dias trabajados en el ano. La LFT reconoce el derecho proporcional para quien no cumple el ano completo.",
+    },
+    {
+      title: "Formula practica",
+      body:
+        "Usa salario diario x dias de aguinaldo x dias trabajados en el ano / dias del ano. Si tu contrato ofrece mas de 15 dias, sustituye ese dato en la estimacion.",
+    },
+    {
+      title: "Donde aparece",
+      body:
+        "En una renuncia, el aguinaldo proporcional suele formar parte del finiquito. Pide que aparezca separado del salario pendiente y de vacaciones para poder verificarlo.",
+    },
+  ],
+  "vacaciones-si-renuncio": [
+    {
+      title: "Vacaciones proporcionales",
+      body:
+        "Al renunciar, revisa si generaste dias de vacaciones durante el ciclo actual. Esos dias pueden pagarse proporcionalmente junto con la prima vacacional si no fueron disfrutados.",
+    },
+    {
+      title: "Vacaciones ya tomadas",
+      body:
+        "Si ya disfrutaste vacaciones, la empresa puede descontarlas del saldo pendiente del ciclo. Por eso conviene pedir historial de vacaciones autorizadas y saldo reconocido.",
+    },
+    {
+      title: "Ciclos anteriores",
+      body:
+        "La calculadora estima el ciclo actual. Si hay vacaciones no disfrutadas de anos anteriores, agregalas al analisis con recibos, solicitudes aprobadas o constancias internas.",
+    },
+  ],
+  "me-pueden-obligar-a-firmar-renuncia": [
+    {
+      title: "Firma solo si entiendes el documento",
+      body:
+        "Una renuncia debe reflejar una decision voluntaria. Si te presionan, te niegan copia o te piden firmar documentos en blanco, son senales de alerta que conviene documentar.",
+    },
+    {
+      title: "Diferencia frente al despido",
+      body:
+        "Firmar renuncia puede cambiar la forma en que se interpreta la terminacion. Por eso es importante distinguir si realmente renunciaste o si la empresa comunico un despido.",
+    },
+    {
+      title: "Antes de aceptar",
+      body:
+        "Pide tiempo para leer, solicita desglose del pago y conserva mensajes o correos sobre la separacion. Si hay presion o monto relevante, busca orientacion antes de firmar.",
+    },
+  ],
+  "que-pasa-si-no-me-pagan-finiquito": [
+    {
+      title: "Documenta primero",
+      body:
+        "Guarda contrato, recibos, fecha de salida, mensajes con la empresa y cualquier promesa de pago. Sin documentos, es mas dificil explicar que conceptos estan pendientes.",
+    },
+    {
+      title: "Pide desglose por escrito",
+      body:
+        "Solicita que la empresa indique salario pendiente, aguinaldo, vacaciones, prima vacacional y fecha estimada de pago. Un mensaje escrito ayuda a ordenar el reclamo.",
+    },
+    {
+      title: "Busca orientacion si no hay respuesta",
+      body:
+        "Si la empresa no responde o el monto no coincide, considera contactar a PROFEDET o la autoridad de conciliacion correspondiente. La calculadora sirve para preparar una referencia numerica, no para sustituir el tramite.",
+    },
+  ],
+  "prima-vacacional-en-finiquito": [
+    {
+      title: "Que es dentro del finiquito",
+      body:
+        "La prima vacacional es un pago adicional sobre vacaciones. En un finiquito suele aparecer junto a vacaciones proporcionales o vacaciones pendientes no disfrutadas.",
+    },
+    {
+      title: "Calculo minimo",
+      body:
+        "La prima minima se estima como 25% del importe de vacaciones. Si tus vacaciones proporcionales equivalen a $2,000 MXN, la prima minima seria $500 MXN.",
+    },
+    {
+      title: "Cuando puede ser mayor",
+      body:
+        "Algunas empresas otorgan una prima superior al minimo legal. Revisa contrato, recibos anteriores o politica interna antes de aceptar que se use solo 25%.",
+    },
+  ],
+  "liquidacion-con-salario-minimo": [
+    {
+      title: "Usa el salario diario correcto",
+      body:
+        "Si ganas salario minimo, confirma si tu salario diario corresponde al minimo general o a una zona/frontera aplicable. Tambien revisa si recibes prestaciones o pagos variables adicionales.",
+    },
+    {
+      title: "Prima de antiguedad y topes",
+      body:
+        "La prima de antiguedad se estima con 12 dias por ano y puede usar un salario topado. Cuando el salario esta cerca del minimo, el tope puede no modificar la base, pero debe revisarse de todos modos.",
+    },
+    {
+      title: "No ignores el finiquito",
+      body:
+        "Aunque la liquidacion incluya indemnizacion, tambien deben revisarse salarios pendientes, aguinaldo, vacaciones y prima vacacional. Esos conceptos forman parte del total que conviene comparar.",
     },
   ],
   };
