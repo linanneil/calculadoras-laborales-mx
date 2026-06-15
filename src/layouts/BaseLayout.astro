@@ -1,18 +1,21 @@
 ---
 import "remixicon/fonts/remixicon.css";
-import { SITE, updatedDate, withBase } from "../lib/site";
-import { legalPages, toolPages } from "../lib/pages";
+import { analytics, SITE, updatedDate, withBase } from "../lib/site";
+import { legalPages, toolPages, type SitePage } from "../lib/pages";
+import { buildStructuredData } from "../lib/seo";
 
 type Props = {
   title: string;
   description: string;
   slug?: string;
   faq?: { question: string; answer: string }[];
+  page?: SitePage;
 };
 
-const { title, description, slug = "", faq = [] } = Astro.props;
+const { title, description, slug = "", faq = [], page } = Astro.props;
 const canonicalPath = withBase(slug ? `/${slug}` : "/");
 const canonical = new URL(canonicalPath, Astro.site ?? SITE.url).toString();
+const structuredData = buildStructuredData({ title, description, canonical, slug, page });
 const faqJson =
   faq.length > 0
     ? {
@@ -44,6 +47,15 @@ const faqJson =
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
+    {analytics.gaMeasurementId && (
+      <>
+        <script async src={`https://www.googletagmanager.com/gtag/js?id=${analytics.gaMeasurementId}`}></script>
+        <script
+          set:html={`window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', '${analytics.gaMeasurementId}', { anonymize_ip: true });`}
+        />
+      </>
+    )}
+    {structuredData.map((schema) => <script type="application/ld+json" set:html={JSON.stringify(schema)} />)}
     {faqJson && <script type="application/ld+json" set:html={JSON.stringify(faqJson)} />}
   </head>
   <body>

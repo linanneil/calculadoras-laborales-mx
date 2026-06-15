@@ -1,5 +1,6 @@
 import type { APIRoute } from "astro";
 import { pages } from "../lib/pages";
+import { updatedIsoDate } from "../lib/site";
 
 export const GET: APIRoute = ({ site }) => {
   const origin = site?.origin ?? "https://herramientaslaborales.com";
@@ -8,6 +9,7 @@ export const GET: APIRoute = ({ site }) => {
     .map(
       (slug) => `  <url>
     <loc>${new URL(slug ? `${base}/${slug}` : `${base}/`, origin).toString()}</loc>
+    <lastmod>${updatedIsoDate}</lastmod>
     <changefreq>monthly</changefreq>
     <priority>${slug ? "0.8" : "1.0"}</priority>
   </url>`,

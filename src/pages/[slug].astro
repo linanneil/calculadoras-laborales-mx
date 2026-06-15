@@ -16,7 +16,7 @@ const { page } = Astro.props;
 const related = [...toolPages, ...articlePages].filter((item) => item.slug !== page.slug).slice(0, 4);
 ---
 
-<BaseLayout title={page.title} description={page.description} slug={page.slug} faq={page.faqs}>
+<BaseLayout title={page.title} description={page.description} slug={page.slug} faq={page.faqs} page={page}>
   <section class="hero">
     <div>
       <p class="eyebrow">{page.kind === "tool" ? "Calculadora gratuita" : page.kind === "legal" ? "Informacion del sitio" : "Guia laboral"}</p>
