@@ -5,6 +5,7 @@ export const SITE = {
   url: import.meta.env.SITE || "https://herramientaslaborales.com",
   locale: "es-MX",
   author: "Calculadoras Laborales MX",
+  contactEmail: "service@herramientaslaborales.com",
 };
 
 export const BASE_PATH = import.meta.env.BASE_URL.replace(/\/$/, "");

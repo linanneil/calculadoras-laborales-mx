@@ -3,7 +3,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import ToolCalculator from "../components/ToolCalculator.astro";
 import AdPlaceholder from "../components/AdPlaceholder.astro";
 import { articlePages, pages, toolPages } from "../lib/pages";
-import { updatedDate, withBase } from "../lib/site";
+import { SITE, updatedDate, withBase } from "../lib/site";
 
 export function getStaticPaths() {
   return pages.map((page) => ({
@@ -34,6 +34,17 @@ const related = [...toolPages, ...articlePages].filter((item) => item.slug !== p
           <p>{section.body}</p>
         </section>
       ))}
+
+      {page.slug === "contact" && (
+        <section class="panel contact-card">
+          <h2>Correo de contacto</h2>
+          <p>
+            Para correcciones, sugerencias editoriales o temas de privacidad, escribe a{" "}
+            <a href={`mailto:${SITE.contactEmail}`}>{SITE.contactEmail}</a>.
+          </p>
+          <p class="muted">No podemos resolver casos laborales personales por correo.</p>
+        </section>
+      )}
 
       {page.formulaCards && (
         <section class="panel formulas">
@@ -124,6 +135,10 @@ const related = [...toolPages, ...articlePages].filter((item) => item.slug !== p
 
   .sources li {
     margin: 8px 0;
+  }
+
+  .contact-card a {
+    font-weight: 800;
   }
 
   .formulas h2 {

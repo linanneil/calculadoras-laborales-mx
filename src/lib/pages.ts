@@ -797,7 +797,7 @@ function getLegalSections(slug: string): { title: string; body: string }[] {
     {
       title: "Datos de contacto",
       body:
-        "Si mas adelante habilitamos formularios, solo se solicitara la informacion necesaria para responder el mensaje. No compartiremos datos personales salvo obligacion legal.",
+        "Puedes escribir a service@herramientaslaborales.com para consultas relacionadas con privacidad, correcciones editoriales o funcionamiento del sitio. Si mas adelante habilitamos formularios, solo se solicitara la informacion necesaria para responder el mensaje. No compartiremos datos personales salvo obligacion legal.",
     },
     {
       title: "Control de cookies",
@@ -880,7 +880,7 @@ function getLegalSections(slug: string): { title: string; body: string }[] {
     {
       title: "Correcciones",
       body:
-        "Si detectas un error, envia la pagina, el dato observado y una fuente que permita verificarlo. Revisaremos correcciones dando prioridad a errores de formula, fuente o interpretacion.",
+        "Si detectas un error, escribe a service@herramientaslaborales.com con la pagina, el dato observado y una fuente que permita verificarlo. Revisaremos correcciones dando prioridad a errores de formula, fuente o interpretacion.",
     },
   ],
   };
