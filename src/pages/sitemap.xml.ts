@@ -2,7 +2,7 @@ import type { APIRoute } from "astro";
 import { pages } from "../lib/pages";
 
 export const GET: APIRoute = ({ site }) => {
-  const origin = site?.origin ?? "https://example.com";
+  const origin = site?.origin ?? "https://herramientaslaborales.com";
   const base = import.meta.env.BASE_URL.replace(/\/$/, "");
   const urls = ["", ...pages.map((page) => page.slug)]
     .map(

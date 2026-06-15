@@ -32,8 +32,8 @@ jobs:
       - name: Build
         run: npm run build
         env:
-          SITE_URL: ${{ vars.SITE_URL || 'https://linanneil.github.io' }}
-          BASE_PATH: ${{ vars.BASE_PATH || '/calculadoras-laborales-mx' }}
+          SITE_URL: ${{ vars.SITE_URL || 'https://herramientaslaborales.com' }}
+          BASE_PATH: ${{ vars.BASE_PATH || '/' }}
       - name: Setup Pages
         uses: actions/configure-pages@v5
       - name: Upload artifact
