@@ -193,6 +193,21 @@ export const pages: SitePage[] = [
   article("prima-vacacional-mexico", "Prima vacacional en Mexico: minimo y ejemplo", "Explicacion simple de la prima vacacional minima del 25% y como se calcula."),
   article("salario-diario-integrado-ejemplo", "Salario diario integrado: ejemplo 2026", "Ejemplo practico de factor de integracion con prestaciones minimas."),
   article("diferencia-finiquito-liquidacion", "Diferencia entre finiquito y liquidacion", "Comparacion clara entre pagos por termino normal, renuncia y despido."),
+  article("como-calcular-finiquito-mexico", "Como calcular finiquito en Mexico paso a paso", "Guia practica para revisar salario pendiente, aguinaldo, vacaciones y prima vacacional antes de firmar."),
+  article("finiquito-con-salario-variable", "Finiquito con salario variable o comisiones", "Como preparar una estimacion cuando tu ingreso incluye comisiones, bonos o pagos variables."),
+  article("finiquito-menos-de-un-ano", "Finiquito con menos de un ano trabajado", "Que conceptos proporcionales revisar si la relacion laboral duro semanas o meses."),
+  article("finiquito-un-ano-trabajado", "Finiquito por un ano trabajado: ejemplo", "Ejemplo orientativo para entender prestaciones proporcionales al terminar despues de un ano."),
+  article("renuncia-sin-preaviso-finiquito", "Renuncia sin preaviso: afecta el finiquito?", "Puntos importantes sobre renuncia, pagos pendientes y documentos que conviene revisar."),
+  article("despido-y-firma-de-renuncia", "Despido y firma de renuncia: que revisar", "Senales de alerta cuando una empresa pide firmar renuncia despues de una separacion."),
+  article("liquidacion-tres-meses-salario", "Liquidacion de tres meses de salario en Mexico", "Explicacion de la indemnizacion constitucional y como se diferencia de otros conceptos."),
+  article("veinte-dias-por-ano-liquidacion", "20 dias por ano en liquidacion laboral", "Cuando aparece este concepto en estimaciones de liquidacion y por que debe separarse del finiquito."),
+  article("prima-antiguedad-finiquito-liquidacion", "Prima de antiguedad en finiquito y liquidacion", "Reglas generales, tope de salario y situaciones frecuentes donde conviene revisarla."),
+  article("salario-pendiente-finiquito", "Salario pendiente en el finiquito", "Como identificar dias trabajados no pagados y separarlos de prestaciones proporcionales."),
+  article("recibo-finiquito-que-debe-incluir", "Recibo de finiquito: que debe incluir", "Lista de conceptos y datos que conviene revisar antes de aceptar un pago final."),
+  article("finiquito-trabajador-confianza", "Finiquito para trabajador de confianza", "Puntos de revision para personal de confianza con prestaciones, bonos o salario variable."),
+  article("vacaciones-no-disfrutadas-finiquito", "Vacaciones no disfrutadas en finiquito", "Como revisar dias pendientes de vacaciones y prima vacacional al terminar la relacion laboral."),
+  article("aguinaldo-por-dias-trabajados", "Aguinaldo por dias trabajados: formula", "Formula proporcional para estimar aguinaldo cuando no se trabajo todo el ano."),
+  article("checklist-antes-firmar-finiquito", "Checklist antes de firmar finiquito", "Lista breve de documentos, conceptos y alertas antes de firmar un finiquito o convenio."),
   legal("about", "Acerca de Calculadoras Laborales MX", "Conoce el objetivo del sitio y el alcance de nuestras herramientas."),
   legal("contact", "Contacto", "Forma de contacto para comentarios, correcciones y solicitudes editoriales."),
   legal("privacy-policy", "Politica de privacidad", "Informacion sobre privacidad, analitica y publicidad futura."),
@@ -376,6 +391,261 @@ function getArticleSections(slug: string): { title: string; body: string }[] {
         "Si una empresa llama liquidacion a todo el pago, pide desglose. El nombre del documento no basta: importan los conceptos incluidos y la causa de terminacion.",
     },
   ],
+  "como-calcular-finiquito-mexico": [
+    {
+      title: "Paso 1: separa los datos base",
+      body:
+        "Anota salario diario bruto, fecha de ingreso, fecha de salida, dias trabajados no pagados y vacaciones ya disfrutadas. Sin esos datos, cualquier total sera dificil de revisar.",
+    },
+    {
+      title: "Paso 2: calcula conceptos proporcionales",
+      body:
+        "El finiquito normalmente suma salario pendiente, aguinaldo proporcional, vacaciones proporcionales y prima vacacional. Cada concepto debe aparecer separado para poder detectar diferencias.",
+    },
+    {
+      title: "Paso 3: compara contra documentos",
+      body:
+        "Contrasta la estimacion con recibos de nomina, contrato y politicas internas. Si hay prestaciones superiores, bonos o comisiones, pide que se expliquen en el desglose.",
+    },
+  ],
+  "finiquito-con-salario-variable": [
+    {
+      title: "Identifica que parte varia",
+      body:
+        "Comisiones, bonos, destajos o incentivos pueden hacer que el salario diario base no sea evidente. Reune recibos recientes y revisa si la empresa usa promedios para prestaciones.",
+    },
+    {
+      title: "No mezcles conceptos",
+      body:
+        "Un pago variable pendiente no es lo mismo que vacaciones o aguinaldo proporcional. Pide que cada rubro se muestre por separado en el finiquito.",
+    },
+    {
+      title: "Cuando usar una estimacion conservadora",
+      body:
+        "Si no tienes todos los recibos, calcula primero con salario fijo y despues agrega variables documentadas. Asi evitas aceptar un total unico sin entender que incluye.",
+    },
+  ],
+  "finiquito-menos-de-un-ano": [
+    {
+      title: "Tambien hay proporcionales",
+      body:
+        "Aunque hayas trabajado menos de un ano, pueden existir aguinaldo proporcional, vacaciones proporcionales, prima vacacional y salarios pendientes.",
+    },
+    {
+      title: "Fechas exactas",
+      body:
+        "En relaciones cortas, unos dias de diferencia pueden cambiar el resultado. Usa fecha real de ingreso y salida, no solo meses aproximados.",
+    },
+    {
+      title: "Revisa pagos finales",
+      body:
+        "Confirma si el ultimo periodo de nomina ya fue pagado. Si no lo fue, esos dias deben distinguirse de las prestaciones proporcionales.",
+    },
+  ],
+  "finiquito-un-ano-trabajado": [
+    {
+      title: "Conceptos comunes",
+      body:
+        "Con un ano de servicio, normalmente revisas salario pendiente, aguinaldo proporcional del ano en curso, vacaciones proporcionales y prima vacacional.",
+    },
+    {
+      title: "Vacaciones del ciclo",
+      body:
+        "Si ya cumpliste el primer ano, revisa si los 12 dias fueron disfrutados, pagados o siguen pendientes. Eso puede cambiar el finiquito.",
+    },
+    {
+      title: "Ejemplo de lectura",
+      body:
+        "Si el total parece bajo, pregunta cuantos dias de vacaciones reconoce la empresa, que salario diario uso y si el aguinaldo se calculo solo por el ano actual.",
+    },
+  ],
+  "renuncia-sin-preaviso-finiquito": [
+    {
+      title: "El preaviso no borra prestaciones",
+      body:
+        "Una renuncia sin preaviso no elimina automaticamente salarios pendientes ni prestaciones ya generadas. Aun asi, conviene revisar contrato y politicas internas.",
+    },
+    {
+      title: "Documenta la fecha de salida",
+      body:
+        "Guarda comunicacion de renuncia, acuse o cualquier mensaje que confirme el ultimo dia trabajado. Esa fecha alimenta los calculos proporcionales.",
+    },
+    {
+      title: "Evita firmar sin desglose",
+      body:
+        "Si te presentan un monto unico, pide que separen salario pendiente, aguinaldo, vacaciones y prima vacacional antes de firmar.",
+    },
+  ],
+  "despido-y-firma-de-renuncia": [
+    {
+      title: "La causa importa",
+      body:
+        "No es lo mismo renunciar que ser despedido. La causa de terminacion determina si solo se revisa finiquito o si tambien puede existir liquidacion.",
+    },
+    {
+      title: "No firmes bajo presion",
+      body:
+        "Si te piden firmar renuncia despues de comunicarte una separacion, lee con calma y pide copia. Firmar documentos incorrectos puede complicar una reclamacion.",
+    },
+    {
+      title: "Pide desglose y tiempo",
+      body:
+        "Solicita el detalle de conceptos y compara contra una estimacion. Si hay dudas relevantes, busca orientacion de PROFEDET o la autoridad correspondiente.",
+    },
+  ],
+  "liquidacion-tres-meses-salario": [
+    {
+      title: "Que representa",
+      body:
+        "Los tres meses suelen mencionarse como indemnizacion constitucional en escenarios de despido injustificado. Deben distinguirse de finiquito y prima de antiguedad.",
+    },
+    {
+      title: "Base de salario",
+      body:
+        "La estimacion depende del salario usado como base. Si tienes salario variable o prestaciones superiores, pide como se determino el salario diario.",
+    },
+    {
+      title: "Uso de la calculadora",
+      body:
+        "La calculadora de liquidacion suma este concepto como parte de una estimacion. No sustituye la revision de la causa de separacion ni de documentos firmados.",
+    },
+  ],
+  "veinte-dias-por-ano-liquidacion": [
+    {
+      title: "Por que se separa",
+      body:
+        "El concepto de 20 dias por ano no debe esconderse dentro de un total general. Separarlo ayuda a comparar la propuesta de la empresa con una estimacion.",
+    },
+    {
+      title: "Antiguedad proporcional",
+      body:
+        "Para estimar anos de servicio, usa fechas reales de ingreso y salida. La calculadora aproxima la antiguedad con base diaria.",
+    },
+    {
+      title: "No todos los casos son iguales",
+      body:
+        "La procedencia del concepto puede depender de la ruta legal o del acuerdo. Si hay conflicto, revisa tu caso con una autoridad o especialista.",
+    },
+  ],
+  "prima-antiguedad-finiquito-liquidacion": [
+    {
+      title: "Regla general de estimacion",
+      body:
+        "La prima de antiguedad suele estimarse con 12 dias por ano y un salario base con tope. La calculadora usa dos salarios minimos diarios como referencia de tope.",
+    },
+    {
+      title: "Cuando aparece",
+      body:
+        "Puede aparecer en liquidaciones por despido y en algunos finiquitos, por ejemplo renuncia con 15 anos o mas de servicio, segun orientacion publica de PROFEDET.",
+    },
+    {
+      title: "Que revisar en el recibo",
+      body:
+        "Verifica salario usado, anos reconocidos y tope aplicado. Si no aparece y crees que procede, pide explicacion antes de firmar.",
+    },
+  ],
+  "salario-pendiente-finiquito": [
+    {
+      title: "Que son dias pendientes",
+      body:
+        "Son dias ya trabajados que todavia no se pagaron en nomina. No deben confundirse con vacaciones, aguinaldo ni indemnizaciones.",
+    },
+    {
+      title: "Como contarlos",
+      body:
+        "Identifica el ultimo periodo pagado y el ultimo dia trabajado. La diferencia puede capturarse como dias pendientes en la calculadora.",
+    },
+    {
+      title: "Pide soporte",
+      body:
+        "Si la empresa dice que ya pago esos dias, solicita recibo o comprobante. Un finiquito claro debe permitir rastrear cada periodo.",
+    },
+  ],
+  "recibo-finiquito-que-debe-incluir": [
+    {
+      title: "Datos minimos",
+      body:
+        "Revisa nombre, puesto, fecha de ingreso, fecha de salida, salario usado y causa de terminacion. Los datos incorrectos pueden afectar el calculo.",
+    },
+    {
+      title: "Conceptos separados",
+      body:
+        "Busca salario pendiente, aguinaldo proporcional, vacaciones, prima vacacional y otros adeudos. Un total sin desglose es dificil de verificar.",
+    },
+    {
+      title: "Antes de firmar",
+      body:
+        "Lee si el documento contiene renuncia, conformidad total o liberacion de reclamaciones. Si no entiendes una clausula, pide tiempo para revisarla.",
+    },
+  ],
+  "finiquito-trabajador-confianza": [
+    {
+      title: "Prestaciones y variables",
+      body:
+        "Trabajadores de confianza pueden tener bonos, comisiones, auto, vales u otras prestaciones. No todas se capturan en una calculadora basica.",
+    },
+    {
+      title: "Misma base de revision",
+      body:
+        "Aun asi, conviene separar salario pendiente, aguinaldo, vacaciones y prima vacacional. Despues agrega conceptos contractuales adicionales.",
+    },
+    {
+      title: "Documentos relevantes",
+      body:
+        "Ten a la mano contrato, anexos, politicas de bonos y recibos de nomina. Esos documentos ayudan a saber si hay prestaciones superiores.",
+    },
+  ],
+  "vacaciones-no-disfrutadas-finiquito": [
+    {
+      title: "Dias pendientes",
+      body:
+        "Si generaste vacaciones y no las disfrutaste, deben revisarse en el finiquito junto con la prima vacacional correspondiente.",
+    },
+    {
+      title: "Ciclos anteriores",
+      body:
+        "La calculadora estima el ciclo actual. Si tienes vacaciones acumuladas de ciclos anteriores, agregalas con soporte documental.",
+    },
+    {
+      title: "Registro de vacaciones",
+      body:
+        "Pide el historial de dias tomados y saldo pendiente. Las diferencias suelen venir de registros incompletos o aprobaciones informales.",
+    },
+  ],
+  "aguinaldo-por-dias-trabajados": [
+    {
+      title: "Formula proporcional",
+      body:
+        "Aguinaldo proporcional = salario diario x dias de aguinaldo x dias trabajados en el ano / dias del ano. El minimo comun es 15 dias.",
+    },
+    {
+      title: "Ano calendario",
+      body:
+        "Cuenta los dias trabajados dentro del ano calendario. Si ingresaste antes del 1 de enero, para ese ano se cuenta desde el 1 de enero.",
+    },
+    {
+      title: "Cuando cambia",
+      body:
+        "El resultado puede ser mayor si tu contrato ofrece mas de 15 dias de aguinaldo o si hay reglas internas superiores.",
+    },
+  ],
+  "checklist-antes-firmar-finiquito": [
+    {
+      title: "Documentos",
+      body:
+        "Reune contrato, recibos de nomina, comprobantes de vacaciones, carta de renuncia o aviso de separacion y cualquier comunicacion relevante.",
+    },
+    {
+      title: "Conceptos",
+      body:
+        "Confirma salario pendiente, aguinaldo proporcional, vacaciones, prima vacacional, prima de antiguedad cuando proceda y pagos variables documentados.",
+    },
+    {
+      title: "Alertas",
+      body:
+        "Evita firmar recibos en blanco, fechas incorrectas o textos que no entiendes. Si el monto es relevante, pide desglose y tiempo para revisar.",
+    },
+  ],
   };
 
   return (
@@ -444,12 +714,17 @@ function getLegalSections(slug: string): { title: string; body: string }[] {
     {
       title: "Analitica y publicidad",
       body:
-        "El sitio esta preparado para integrar analitica y publicidad en el futuro. Si se activan, se actualizara esta politica para describir proveedores, cookies y controles disponibles.",
+        "El sitio puede usar herramientas de medicion como Google Analytics o servicios similares para entender trafico, paginas visitadas, dispositivo, pais aproximado y rendimiento tecnico. Tambien puede integrar Google AdSense u otras redes publicitarias en el futuro. Esos proveedores pueden usar cookies, identificadores o tecnologias similares para medir anuncios, limitar frecuencia, detectar fraude y personalizar o contextualizar publicidad segun sus propias politicas.",
     },
     {
       title: "Datos de contacto",
       body:
         "Si mas adelante habilitamos formularios, solo se solicitara la informacion necesaria para responder el mensaje. No compartiremos datos personales salvo obligacion legal.",
+    },
+    {
+      title: "Control de cookies",
+      body:
+        "Puedes bloquear o borrar cookies desde la configuracion de tu navegador. Si se activan anuncios personalizados, los proveedores correspondientes podran ofrecer mecanismos adicionales para administrar preferencias publicitarias.",
     },
   ],
   terms: [

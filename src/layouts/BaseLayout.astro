@@ -53,6 +53,7 @@ const faqJson =
         <span>{SITE.name}</span>
       </a>
       <nav aria-label="Navegacion principal">
+        <a href={withBase("/guias")}>Guias</a>
         {toolPages.slice(0, 4).map((page) => (
           <a href={withBase(`/${page.slug}`)}>
             {page.tool === "finiquito" ? "Finiquito" : page.tool === "liquidacion" ? "Liquidacion" : page.tool === "aguinaldo" ? "Aguinaldo" : "Vacaciones"}
@@ -376,6 +377,8 @@ const faqJson =
     .site-header nav {
       order: initial;
       gap: 10px 18px;
+      flex-wrap: wrap;
+      justify-content: flex-start;
     }
 
     .header-trust {

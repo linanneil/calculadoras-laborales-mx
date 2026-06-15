@@ -2,7 +2,7 @@ export const SITE = {
   name: "Calculadoras Laborales MX",
   description:
     "Herramientas gratuitas para estimar finiquito, liquidacion, aguinaldo, vacaciones y salario diario integrado en Mexico.",
-  url: import.meta.env.SITE || "https://example.com",
+  url: import.meta.env.SITE || "https://herramientaslaborales.com",
   locale: "es-MX",
   author: "Calculadoras Laborales MX",
 };

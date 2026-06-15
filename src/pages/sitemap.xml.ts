@@ -4,7 +4,7 @@ import { pages } from "../lib/pages";
 export const GET: APIRoute = ({ site }) => {
   const origin = site?.origin ?? "https://herramientaslaborales.com";
   const base = import.meta.env.BASE_URL.replace(/\/$/, "");
-  const urls = ["", ...pages.map((page) => page.slug)]
+  const urls = ["", "guias", ...pages.map((page) => page.slug)]
     .map(
       (slug) => `  <url>
     <loc>${new URL(slug ? `${base}/${slug}` : `${base}/`, origin).toString()}</loc>

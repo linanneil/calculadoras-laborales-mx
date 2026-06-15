@@ -1,0 +1,184 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import AdPlaceholder from "../components/AdPlaceholder.astro";
+import { articlePages, toolPages } from "../lib/pages";
+import { withBase } from "../lib/site";
+
+const title = "Guias laborales en Mexico | Calculadoras Laborales MX";
+const description =
+  "Guias practicas sobre finiquito, liquidacion, aguinaldo, vacaciones, prima vacacional y salario diario integrado en Mexico.";
+
+const featured = articlePages.slice(0, 6);
+const remaining = articlePages.slice(6);
+---
+
+<BaseLayout title={title} description={description} slug="guias">
+  <section class="hero guides-hero">
+    <div>
+      <p class="eyebrow">Guias laborales</p>
+      <h1>Guias para revisar pagos laborales en Mexico</h1>
+      <p class="lead">
+        Explicaciones practicas para entender finiquito, liquidacion, aguinaldo, vacaciones,
+        prima vacacional y conceptos relacionados antes de revisar un pago final.
+      </p>
+    </div>
+    <div class="guide-summary">
+      <h2>Calculadoras principales</h2>
+      <div>
+        {toolPages.map((page) => (
+          <a href={withBase(`/${page.slug}`)}>{page.h1}</a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="guide-band">
+    <div class="section-heading">
+      <p class="eyebrow">Primeras lecturas</p>
+      <h2>Empieza por estas guias</h2>
+    </div>
+    <div class="guide-grid featured">
+      {featured.map((page) => (
+        <article>
+          <h3><a href={withBase(`/${page.slug}`)}>{page.h1}</a></h3>
+          <p>{page.description}</p>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section class="content guide-content">
+    <article class="article-body">
+      <section class="panel">
+        <h2>Todas las guias</h2>
+        <div class="guide-list">
+          {remaining.map((page) => (
+            <a href={withBase(`/${page.slug}`)}>
+              <span>{page.h1}</span>
+              <small>{page.description}</small>
+            </a>
+          ))}
+        </div>
+      </section>
+      <section class="panel disclaimer">
+        <h2>Uso recomendado</h2>
+        <p>
+          Estas guias son informacion general para Mexico. Usa las calculadoras para obtener una
+          estimacion y revisa documentos laborales antes de firmar cualquier convenio o recibo.
+        </p>
+      </section>
+    </article>
+    <aside>
+      <AdPlaceholder />
+      <div class="panel related">
+        <h2>Herramientas</h2>
+        {toolPages.map((page) => <a href={withBase(`/${page.slug}`)}>{page.h1}</a>)}
+      </div>
+    </aside>
+  </section>
+</BaseLayout>
+
+<style>
+  .guides-hero {
+    grid-template-columns: minmax(0, 1fr) minmax(360px, 0.62fr);
+  }
+
+  .guide-summary {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 24px;
+  }
+
+  .guide-summary h2 {
+    margin: 0 0 14px;
+    font-size: 1.15rem;
+  }
+
+  .guide-summary div,
+  .related {
+    display: grid;
+    gap: 10px;
+  }
+
+  .guide-band {
+    padding: 30px 0 22px;
+    border-top: 1px solid var(--line);
+  }
+
+  .section-heading {
+    max-width: 720px;
+    margin-bottom: 18px;
+  }
+
+  .section-heading h2 {
+    margin: 8px 0 0;
+    font-size: 2rem;
+  }
+
+  .guide-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+  }
+
+  .guide-grid article {
+    min-height: 190px;
+    padding: 20px;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+  }
+
+  .guide-grid h3 {
+    margin: 0 0 10px;
+    font-size: 1.18rem;
+    line-height: 1.25;
+  }
+
+  .guide-grid p {
+    margin: 0;
+    color: var(--muted);
+  }
+
+  .guide-content {
+    padding-top: 22px;
+  }
+
+  .guide-list {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+
+  .guide-list a {
+    display: grid;
+    gap: 4px;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .guide-list span {
+    font-weight: 800;
+  }
+
+  .guide-list small {
+    color: var(--muted);
+    font-size: 0.92rem;
+  }
+
+  .related h2 {
+    font-size: 1.2rem;
+  }
+
+  @media (max-width: 960px) {
+    .guide-grid,
+    .guide-list {
+      grid-template-columns: 1fr;
+    }
+
+    .guides-hero {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
