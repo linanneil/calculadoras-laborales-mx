@@ -34,6 +34,7 @@ jobs:
         env:
           SITE_URL: ${{ vars.SITE_URL || 'https://herramientaslaborales.com' }}
           BASE_PATH: ${{ vars.BASE_PATH || '/' }}
+          PUBLIC_GA_MEASUREMENT_ID: ${{ vars.PUBLIC_GA_MEASUREMENT_ID || 'G-Z2GK7ZP8M0' }}
       - name: Setup Pages
         uses: actions/configure-pages@v5
       - name: Upload artifact
