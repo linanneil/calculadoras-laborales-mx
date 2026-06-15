@@ -34,16 +34,18 @@ http://127.0.0.1:4321/
 2. Sube este proyecto al repositorio.
 3. En GitHub, ve a `Settings > Pages`.
 4. En `Build and deployment`, selecciona `GitHub Actions`.
-5. En `Settings > Secrets and variables > Actions > Variables`, crea:
+5. En `Settings > Secrets and variables > Actions > Variables`, crea o ajusta:
 
 ```text
 SITE_URL=https://tu-dominio.com
+BASE_PATH=/
 ```
 
 Si aun no tienes dominio, puedes usar temporalmente la URL de GitHub Pages:
 
 ```text
-https://usuario.github.io/repositorio
+SITE_URL=https://usuario.github.io
+BASE_PATH=/repositorio
 ```
 
 El valor de `SITE_URL` alimenta:
@@ -61,7 +63,8 @@ Cuando compres el dominio:
 2. Crea los registros DNS que GitHub Pages indique.
 3. Activa `Enforce HTTPS` cuando GitHub lo permita.
 4. Cambia `SITE_URL` al dominio final.
-5. Vuelve a ejecutar el workflow.
+5. Cambia `BASE_PATH` a `/`.
+6. Vuelve a ejecutar el workflow.
 
 Para un dominio apex como `example.com`, GitHub Pages suele requerir registros `A`. Para un subdominio como `www.example.com`, suele usarse `CNAME`. Sigue la pantalla de GitHub Pages para evitar valores obsoletos.
 

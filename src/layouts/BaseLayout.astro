@@ -1,6 +1,6 @@
 ---
 import "remixicon/fonts/remixicon.css";
-import { SITE, updatedDate } from "../lib/site";
+import { SITE, updatedDate, withBase } from "../lib/site";
 import { legalPages, toolPages } from "../lib/pages";
 
 type Props = {
@@ -11,7 +11,8 @@ type Props = {
 };
 
 const { title, description, slug = "", faq = [] } = Astro.props;
-const canonical = new URL(`/${slug}`.replace(/\/$/, ""), Astro.site ?? SITE.url).toString();
+const canonicalPath = withBase(slug ? `/${slug}` : "/");
+const canonical = new URL(canonicalPath, Astro.site ?? SITE.url).toString();
 const faqJson =
   faq.length > 0
     ? {
@@ -32,8 +33,8 @@ const faqJson =
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="generator" content={Astro.generator} />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="icon" href="/favicon.ico" />
+    <link rel="icon" type="image/svg+xml" href={withBase("/favicon.svg")} />
+    <link rel="icon" href={withBase("/favicon.ico")} />
     <link rel="canonical" href={canonical} />
     <title>{title}</title>
     <meta name="description" content={description} />
@@ -47,13 +48,13 @@ const faqJson =
   </head>
   <body>
     <header class="site-header">
-      <a class="brand" href="/" aria-label={`${SITE.name} inicio`}>
+      <a class="brand" href={withBase("/")} aria-label={`${SITE.name} inicio`}>
         <span class="brand-mark">MX</span>
         <span>{SITE.name}</span>
       </a>
       <nav aria-label="Navegacion principal">
         {toolPages.slice(0, 4).map((page) => (
-          <a href={`/${page.slug}`}>
+          <a href={withBase(`/${page.slug}`)}>
             {page.tool === "finiquito" ? "Finiquito" : page.tool === "liquidacion" ? "Liquidacion" : page.tool === "aguinaldo" ? "Aguinaldo" : "Vacaciones"}
           </a>
         ))}
@@ -72,7 +73,7 @@ const faqJson =
         <p>Estimaciones laborales para Mexico. Ultima actualizacion: {updatedDate}.</p>
       </div>
       <nav aria-label="Paginas legales">
-        {legalPages.map((page) => <a href={`/${page.slug}`}>{page.h1}</a>)}
+        {legalPages.map((page) => <a href={withBase(`/${page.slug}`)}>{page.h1}</a>)}
       </nav>
     </footer>
   </body>

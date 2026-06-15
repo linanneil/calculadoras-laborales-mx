@@ -3,10 +3,11 @@ import { pages } from "../lib/pages";
 
 export const GET: APIRoute = ({ site }) => {
   const origin = site?.origin ?? "https://example.com";
+  const base = import.meta.env.BASE_URL.replace(/\/$/, "");
   const urls = ["", ...pages.map((page) => page.slug)]
     .map(
       (slug) => `  <url>
-    <loc>${origin}/${slug}</loc>
+    <loc>${new URL(slug ? `${base}/${slug}` : `${base}/`, origin).toString()}</loc>
     <changefreq>monthly</changefreq>
     <priority>${slug ? "0.8" : "1.0"}</priority>
   </url>`,

@@ -2,10 +2,19 @@ export const SITE = {
   name: "Calculadoras Laborales MX",
   description:
     "Herramientas gratuitas para estimar finiquito, liquidacion, aguinaldo, vacaciones y salario diario integrado en Mexico.",
-  url: "https://example.com",
+  url: import.meta.env.SITE || "https://example.com",
   locale: "es-MX",
   author: "Calculadoras Laborales MX",
 };
+
+export const BASE_PATH = import.meta.env.BASE_URL.replace(/\/$/, "");
+
+export function withBase(path: string): string {
+  if (path.startsWith("http") || path.startsWith("mailto:") || path.startsWith("#")) return path;
+  const normalized = path.startsWith("/") ? path : `/${path}`;
+  if (!BASE_PATH) return normalized;
+  return normalized === "/" ? `${BASE_PATH}/` : `${BASE_PATH}${normalized}`;
+}
 
 export const formatMxn = (value: number) =>
   new Intl.NumberFormat("es-MX", {

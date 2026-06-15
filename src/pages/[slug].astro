@@ -3,7 +3,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import ToolCalculator from "../components/ToolCalculator.astro";
 import AdPlaceholder from "../components/AdPlaceholder.astro";
 import { articlePages, pages, toolPages } from "../lib/pages";
-import { updatedDate } from "../lib/site";
+import { updatedDate, withBase } from "../lib/site";
 
 export function getStaticPaths() {
   return pages.map((page) => ({
@@ -70,7 +70,7 @@ const related = [...toolPages, ...articlePages].filter((item) => item.slug !== p
       <AdPlaceholder />
       <div class="panel related">
         <h2>Tambien te puede servir</h2>
-        {related.map((item) => <a href={`/${item.slug}`}>{item.h1}</a>)}
+        {related.map((item) => <a href={withBase(`/${item.slug}`)}>{item.h1}</a>)}
       </div>
     </aside>
   </section>
