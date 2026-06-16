@@ -307,6 +307,88 @@ export const toolPages = pages.filter((page) => page.kind === "tool");
 export const articlePages = pages.filter((page) => page.kind === "article");
 export const legalPages = pages.filter((page) => page.kind === "legal");
 
+export const guideGroups = [
+  {
+    title: "Guias de finiquito",
+    description: "Renuncia, salario pendiente, recibo de finiquito y pagos proporcionales.",
+    toolSlug: "calculadora-finiquito",
+    slugs: [
+      "finiquito-renuncia-voluntaria",
+      "finiquito-por-renuncia-mexico",
+      "cuanto-me-toca-de-finiquito",
+      "finiquito-si-trabaje-6-meses",
+      "finiquito-menos-de-un-ano",
+      "finiquito-un-ano-trabajado",
+      "salario-pendiente-finiquito",
+      "recibo-finiquito-que-debe-incluir",
+      "checklist-antes-firmar-finiquito",
+      "que-pasa-si-no-me-pagan-finiquito",
+    ],
+  },
+  {
+    title: "Guias de liquidacion y despido",
+    description: "Despido, indemnizacion, tres meses, 20 dias por ano y prima de antiguedad.",
+    toolSlug: "calculadora-liquidacion",
+    slugs: [
+      "liquidacion-por-despido-injustificado",
+      "como-calcular-liquidacion-por-despido",
+      "despido-y-firma-de-renuncia",
+      "me-pueden-obligar-a-firmar-renuncia",
+      "liquidacion-tres-meses-salario",
+      "veinte-dias-por-ano-liquidacion",
+      "prima-antiguedad-finiquito-liquidacion",
+      "liquidacion-con-salario-minimo",
+      "diferencia-finiquito-liquidacion",
+    ],
+  },
+  {
+    title: "Guias de aguinaldo y vacaciones",
+    description: "Aguinaldo proporcional, vacaciones pendientes y prima vacacional.",
+    toolSlug: "calculadora-aguinaldo",
+    slugs: [
+      "aguinaldo-proporcional-renuncia",
+      "aguinaldo-por-dias-trabajados",
+      "aguinaldo-si-renuncio-antes-de-diciembre",
+      "vacaciones-proporcionales-mexico",
+      "vacaciones-si-renuncio",
+      "vacaciones-no-disfrutadas-finiquito",
+      "prima-vacacional-mexico",
+      "prima-vacacional-en-finiquito",
+    ],
+  },
+  {
+    title: "Guias por ciudad y salario",
+    description: "Casos practicos para ubicaciones, salario variable y salario diario integrado.",
+    toolSlug: "calculadora-sueldo-diario-integrado",
+    slugs: [
+      "calculadora-finiquito-cdmx",
+      "calculadora-finiquito-puebla",
+      "finiquito-con-salario-variable",
+      "finiquito-trabajador-confianza",
+      "salario-diario-integrado-ejemplo",
+      "isr-finiquito-mexico",
+      "como-calcular-finiquito-mexico",
+    ],
+  },
+];
+
+export function getPageBySlug(slug: string): SitePage | undefined {
+  return pages.find((page) => page.slug === slug);
+}
+
+export function getRelatedPages(page: SitePage, limit = 4): SitePage[] {
+  const group = guideGroups.find((item) => item.slugs.includes(page.slug) || item.toolSlug === page.slug);
+  const groupedPages = group
+    ? [group.toolSlug, ...group.slugs]
+        .filter((slug) => slug !== page.slug)
+        .map((slug) => getPageBySlug(slug))
+        .filter((item): item is SitePage => Boolean(item))
+    : [];
+
+  const fallbackPages = [...toolPages, ...articlePages].filter((item) => item.slug !== page.slug);
+  return [...groupedPages, ...fallbackPages.filter((item) => !groupedPages.some((grouped) => grouped.slug === item.slug))].slice(0, limit);
+}
+
 function getArticleSections(slug: string): { title: string; body: string }[] {
   const sections: Record<string, { title: string; body: string }[]> = {
   "finiquito-renuncia-voluntaria": [

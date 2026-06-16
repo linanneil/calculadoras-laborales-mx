@@ -3,7 +3,14 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import AdPlaceholder from "../components/AdPlaceholder.astro";
 import ToolCalculator from "../components/ToolCalculator.astro";
 import { SITE, withBase } from "../lib/site";
-import { articlePages, toolPages } from "../lib/pages";
+import { articlePages, getPageBySlug, guideGroups, toolPages } from "../lib/pages";
+
+const featuredGuides = articlePages.slice(0, 6);
+const groupedGuides = guideGroups.map((group) => ({
+  ...group,
+  tool: getPageBySlug(group.toolSlug),
+  pages: group.slugs.map((slug) => getPageBySlug(slug)).filter(Boolean).slice(0, 5),
+}));
 ---
 
 <BaseLayout title={`${SITE.name} | Calculadoras laborales para Mexico`} description={SITE.description}>
@@ -76,7 +83,7 @@ import { articlePages, toolPages } from "../lib/pages";
     <div>
       <h2>Guias populares</h2>
       <div class="grid">
-        {articlePages.slice(0, 6).map((page) => (
+        {featuredGuides.map((page) => (
           <article class="card">
             <h3><a href={withBase(`/${page.slug}`)}>{page.h1}</a></h3>
             <p>{page.description}</p>
@@ -85,6 +92,30 @@ import { articlePages, toolPages } from "../lib/pages";
       </div>
     </div>
     <AdPlaceholder />
+  </section>
+
+  <section class="guide-clusters" aria-labelledby="guide-clusters-title">
+    <div class="section-heading">
+      <p class="eyebrow">Rutas de consulta</p>
+      <h2 id="guide-clusters-title">Guias por tema laboral</h2>
+      <p>Explora articulos relacionados y abre la calculadora principal de cada tema para estimar montos.</p>
+    </div>
+    <div class="cluster-grid">
+      {groupedGuides.map((group) => (
+        <article class="cluster-card">
+          <div>
+            <h3>{group.title}</h3>
+            <p>{group.description}</p>
+          </div>
+          <div class="cluster-links">
+            {group.pages.map((page) => (
+              <a href={withBase(`/${page.slug}`)}>{page.h1}</a>
+            ))}
+          </div>
+          {group.tool && <a class="cluster-tool" href={withBase(`/${group.tool.slug}`)}>Abrir {group.tool.h1}</a>}
+        </article>
+      ))}
+    </div>
   </section>
 </BaseLayout>
 
@@ -175,6 +206,62 @@ import { articlePages, toolPages } from "../lib/pages";
     font-size: 0.92rem;
   }
 
+  .guide-clusters {
+    padding: 34px 0 8px;
+  }
+
+  .section-heading {
+    max-width: 760px;
+    margin-bottom: 18px;
+  }
+
+  .section-heading h2 {
+    margin: 8px 0;
+    font-size: 2rem;
+  }
+
+  .section-heading p:last-child {
+    color: var(--muted);
+  }
+
+  .cluster-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+  }
+
+  .cluster-card {
+    display: grid;
+    gap: 18px;
+    align-content: start;
+    padding: 22px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: var(--surface);
+  }
+
+  .cluster-card h3 {
+    margin: 0 0 8px;
+    font-size: 1.2rem;
+  }
+
+  .cluster-card p {
+    margin: 0;
+    color: var(--muted);
+  }
+
+  .cluster-links {
+    display: grid;
+    gap: 9px;
+  }
+
+  .cluster-tool {
+    display: inline-flex;
+    width: fit-content;
+    color: var(--accent-dark);
+    font-weight: 800;
+  }
+
   @media (max-width: 980px) {
     .feature-band {
       grid-template-columns: repeat(2, 1fr);
@@ -215,6 +302,10 @@ import { articlePages, toolPages } from "../lib/pages";
     .feature-band article:nth-child(3) {
       padding: 0;
       border-right: 0;
+    }
+
+    .cluster-grid {
+      grid-template-columns: 1fr;
     }
   }
 </style>

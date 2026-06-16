@@ -1,7 +1,7 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import AdPlaceholder from "../components/AdPlaceholder.astro";
-import { articlePages, toolPages } from "../lib/pages";
+import { articlePages, getPageBySlug, guideGroups, toolPages } from "../lib/pages";
 import { withBase } from "../lib/site";
 
 const title = "Guias laborales en Mexico | Calculadoras Laborales MX";
@@ -9,7 +9,11 @@ const description =
   "Guias practicas sobre finiquito, liquidacion, aguinaldo, vacaciones, prima vacacional y salario diario integrado en Mexico.";
 
 const featured = articlePages.slice(0, 6);
-const remaining = articlePages.slice(6);
+const groupedGuides = guideGroups.map((group) => ({
+  ...group,
+  tool: getPageBySlug(group.toolSlug),
+  pages: group.slugs.map((slug) => getPageBySlug(slug)).filter(Boolean),
+}));
 ---
 
 <BaseLayout title={title} description={description} slug="guias">
@@ -50,13 +54,24 @@ const remaining = articlePages.slice(6);
   <section class="content guide-content">
     <article class="article-body">
       <section class="panel">
-        <h2>Todas las guias</h2>
-        <div class="guide-list">
-          {remaining.map((page) => (
-            <a href={withBase(`/${page.slug}`)}>
-              <span>{page.h1}</span>
-              <small>{page.description}</small>
-            </a>
+        <h2>Guias por tema</h2>
+        <div class="topic-list">
+          {groupedGuides.map((group) => (
+            <section class="topic-block" aria-labelledby={`topic-${group.toolSlug}`}>
+              <div>
+                <h3 id={`topic-${group.toolSlug}`}>{group.title}</h3>
+                <p>{group.description}</p>
+                {group.tool && <a class="tool-link" href={withBase(`/${group.tool.slug}`)}>Usar {group.tool.h1}</a>}
+              </div>
+              <div class="guide-list">
+                {group.pages.map((page) => (
+                  <a href={withBase(`/${page.slug}`)}>
+                    <span>{page.h1}</span>
+                    <small>{page.description}</small>
+                  </a>
+                ))}
+              </div>
+            </section>
           ))}
         </div>
       </section>
@@ -145,6 +160,39 @@ const remaining = articlePages.slice(6);
     padding-top: 22px;
   }
 
+  .topic-list {
+    display: grid;
+    gap: 26px;
+  }
+
+  .topic-block {
+    display: grid;
+    grid-template-columns: minmax(190px, 0.36fr) minmax(0, 1fr);
+    gap: 24px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .topic-block:last-child {
+    padding-bottom: 0;
+    border-bottom: 0;
+  }
+
+  .topic-block h3 {
+    margin: 0 0 8px;
+    color: var(--accent-dark);
+    font-size: 1.16rem;
+  }
+
+  .topic-block p {
+    margin: 0 0 12px;
+    color: var(--muted);
+  }
+
+  .tool-link {
+    font-weight: 800;
+  }
+
   .guide-list {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -173,7 +221,8 @@ const remaining = articlePages.slice(6);
 
   @media (max-width: 960px) {
     .guide-grid,
-    .guide-list {
+    .guide-list,
+    .topic-block {
       grid-template-columns: 1fr;
     }
 
