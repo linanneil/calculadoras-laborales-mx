@@ -9,6 +9,7 @@ export type SitePage = {
   description: string;
   h1: string;
   intro: string;
+  quickAnswer?: string;
   sections: { title: string; body: string }[];
   formulaCards?: { label: string; formula: string; note: string }[];
   faqs?: { question: string; answer: string }[];
@@ -43,6 +44,74 @@ const commonFaq = [
   },
 ];
 
+const toolFaqs: Record<ToolKind, { question: string; answer: string }[]> = {
+  finiquito: [
+    {
+      question: "Cuanto me toca de finiquito si renuncio en Mexico?",
+      answer:
+        "Depende de tu salario diario, fecha de ingreso, fecha de salida, dias pendientes de pago, aguinaldo proporcional, vacaciones proporcionales y prima vacacional. La calculadora separa esos conceptos para obtener una estimacion bruta.",
+    },
+    {
+      question: "El finiquito incluye liquidacion o indemnizacion?",
+      answer:
+        "No siempre. El finiquito cubre prestaciones pendientes o proporcionales. La liquidacion o indemnizacion se revisa en escenarios como despido injustificado o acuerdo con indemnizacion.",
+    },
+    ...commonFaq,
+  ],
+  liquidacion: [
+    {
+      question: "Como se calcula una liquidacion por despido en Mexico?",
+      answer:
+        "Una estimacion comun separa indemnizacion de tres meses, 20 dias por ano cuando corresponda, prima de antiguedad y finiquito. El resultado depende del salario diario, antiguedad y documentos del caso.",
+    },
+    {
+      question: "La liquidacion siempre incluye 20 dias por ano?",
+      answer:
+        "No en todos los escenarios. Puede depender de la via legal, del tipo de despido y del acuerdo o resolucion aplicable. Por eso conviene revisar este concepto separado del finiquito.",
+    },
+    ...commonFaq,
+  ],
+  aguinaldo: [
+    {
+      question: "Tengo derecho a aguinaldo si renuncio antes de diciembre?",
+      answer:
+        "Si trabajaste parte del ano, normalmente se revisa aguinaldo proporcional por los dias trabajados. La calculadora usa el minimo de 15 dias salvo que captures una prestacion mayor.",
+    },
+    {
+      question: "Que datos necesito para calcular aguinaldo proporcional?",
+      answer:
+        "Necesitas salario diario, dias de aguinaldo que otorga tu empresa y dias trabajados dentro del ano. En ano bisiesto se usa divisor de 366 dias.",
+    },
+    ...commonFaq,
+  ],
+  vacaciones: [
+    {
+      question: "Que pasa con mis vacaciones si renuncio?",
+      answer:
+        "Se revisan vacaciones proporcionales del ciclo actual y prima vacacional. Si tienes vacaciones de ciclos anteriores no disfrutadas, debes agregarlas con soporte documental.",
+    },
+    {
+      question: "Como se calcula la prima vacacional en el finiquito?",
+      answer:
+        "La prima vacacional minima se estima como 25% del importe de vacaciones. Algunas empresas pagan un porcentaje mayor por contrato o politica interna.",
+    },
+    ...commonFaq,
+  ],
+  sdi: [
+    {
+      question: "Para que sirve el salario diario integrado?",
+      answer:
+        "El salario diario integrado ayuda a estimar una base que incluye salario y prestaciones minimas como aguinaldo, vacaciones y prima vacacional. Es una referencia, no una auditoria formal de nomina.",
+    },
+    {
+      question: "El SDI incluye bonos, comisiones o vales?",
+      answer:
+        "Esta calculadora inicial no incluye variables, bonos, comisiones ni prestaciones superiores. Si esos conceptos aplican, revisalos con recibos de nomina o con el area de nomina.",
+    },
+    ...commonFaq,
+  ],
+};
+
 export const pages: SitePage[] = [
   {
     slug: "calculadora-finiquito",
@@ -54,6 +123,8 @@ export const pages: SitePage[] = [
     h1: "Calculadora de finiquito 2026",
     intro:
       "Estima el finiquito por renuncia o termino de relacion laboral en Mexico. Ingresa salario diario, fechas y dias pendientes para ver el desglose.",
+    quickAnswer:
+      "El finiquito en Mexico se estima sumando salario pendiente, aguinaldo proporcional, vacaciones proporcionales y prima vacacional. Captura salario diario, fechas reales y dias no pagados para obtener un desglose bruto en MXN antes de revisar o firmar un recibo.",
     sections: [
       {
         title: "Que incluye el finiquito",
@@ -88,7 +159,7 @@ export const pages: SitePage[] = [
         note: "La prima vacacional minima se estima con 25% sobre vacaciones.",
       },
     ],
-    faqs: commonFaq,
+    faqs: toolFaqs.finiquito,
     sources: officialSources,
   },
   {
@@ -101,6 +172,8 @@ export const pages: SitePage[] = [
     h1: "Calculadora de liquidacion por despido",
     intro:
       "Herramienta para estimar una liquidacion laboral en Mexico cuando existe despido. Incluye conceptos comunes de indemnizacion y finiquito.",
+    quickAnswer:
+      "Una liquidacion por despido puede incluir indemnizacion de tres meses, 20 dias por ano cuando corresponda, prima de antiguedad y prestaciones pendientes. Usa el resultado como estimacion inicial y pide siempre un desglose por concepto.",
     sections: [
       {
         title: "Conceptos estimados",
@@ -135,7 +208,7 @@ export const pages: SitePage[] = [
         note: "La calculadora aplica un tope de dos salarios minimos diarios.",
       },
     ],
-    faqs: commonFaq,
+    faqs: toolFaqs.liquidacion,
     sources: officialSources,
   },
   {
@@ -148,6 +221,8 @@ export const pages: SitePage[] = [
     h1: "Calculadora de aguinaldo proporcional",
     intro:
       "Calcula un aguinaldo estimado con el minimo legal de 15 dias para trabajadores del sector privado en Mexico.",
+    quickAnswer:
+      "El aguinaldo proporcional se calcula con salario diario, dias de aguinaldo y dias trabajados dentro del ano. Si renuncias o sales antes de diciembre, puedes estimar la parte proporcional con base en los dias efectivamente trabajados.",
     sections: [
       {
         title: "Formula general",
@@ -172,7 +247,7 @@ export const pages: SitePage[] = [
         note: "En ano bisiesto el divisor es 366; en otros anos, 365.",
       },
     ],
-    faqs: commonFaq,
+    faqs: toolFaqs.aguinaldo,
     sources: officialSources,
   },
   {
@@ -185,6 +260,8 @@ export const pages: SitePage[] = [
     h1: "Calculadora de vacaciones proporcionales",
     intro:
       "Calcula vacaciones proporcionales y prima vacacional minima del 25% segun antiguedad.",
+    quickAnswer:
+      "Las vacaciones proporcionales se estiman con los dias de vacaciones que corresponden por antiguedad y los dias trabajados del ciclo. La prima vacacional minima se calcula como 25% del importe de vacaciones, salvo que tu empresa pague mas.",
     sections: [
       {
         title: "Dias de vacaciones",
@@ -219,7 +296,7 @@ export const pages: SitePage[] = [
         note: "25% es el minimo legal; algunas empresas pagan un porcentaje mayor.",
       },
     ],
-    faqs: commonFaq,
+    faqs: toolFaqs.vacaciones,
     sources: officialSources,
   },
   {
@@ -232,6 +309,8 @@ export const pages: SitePage[] = [
     h1: "Calculadora de salario diario integrado",
     intro:
       "Obtén un SDI estimado a partir del salario diario y la antiguedad. Es util para revisar bases laborales y de seguridad social.",
+    quickAnswer:
+      "El salario diario integrado estimado suma al salario diario la parte diaria de aguinaldo, vacaciones y prima vacacional minima. Sirve como referencia rapida, pero no reemplaza una revision formal de nomina o seguridad social.",
     sections: [
       {
         title: "Factor de integracion",
@@ -256,7 +335,7 @@ export const pages: SitePage[] = [
         note: "No incluye variables, bonos, comisiones ni prestaciones superiores.",
       },
     ],
-    faqs: commonFaq,
+    faqs: toolFaqs.sdi,
     sources: officialSources,
   },
   article("finiquito-renuncia-voluntaria", "Finiquito por renuncia voluntaria en Mexico 2026", "Que revisar cuando renuncias voluntariamente: salario pendiente, aguinaldo, vacaciones y prima vacacional."),

@@ -28,6 +28,13 @@ const related = getRelatedPages(page, 5);
 
   <section class="content">
     <article class="article-body">
+      {page.quickAnswer && (
+        <section class="panel quick-answer">
+          <h2>Respuesta rapida</h2>
+          <p>{page.quickAnswer}</p>
+        </section>
+      )}
+
       {page.sections.map((section) => (
         <section class="panel">
           <h2>{section.title}</h2>
@@ -139,6 +146,22 @@ const related = getRelatedPages(page, 5);
 
   .contact-card a {
     font-weight: 800;
+  }
+
+  .quick-answer {
+    border-left: 5px solid var(--accent-dark);
+    background: var(--accent-soft);
+  }
+
+  .quick-answer h2 {
+    font-size: 1.25rem;
+  }
+
+  .quick-answer p {
+    margin: 0;
+    color: var(--text);
+    font-size: 1.05rem;
+    font-weight: 650;
   }
 
   .formulas h2 {
