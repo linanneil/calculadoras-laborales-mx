@@ -340,8 +340,8 @@ export const pages: SitePage[] = [
   },
   article("finiquito-renuncia-voluntaria", "Finiquito por renuncia voluntaria en Mexico 2026", "Que revisar cuando renuncias voluntariamente: salario pendiente, aguinaldo, vacaciones y prima vacacional."),
   article("liquidacion-por-despido-injustificado", "Liquidacion por despido injustificado en Mexico", "Conceptos frecuentes en una separacion por despido y diferencias frente al finiquito."),
-  article("calculadora-finiquito-cdmx", "Calculadora de finiquito CDMX 2026", "Guia para estimar finiquito en Ciudad de Mexico usando reglas laborales federales."),
-  article("calculadora-finiquito-puebla", "Calculadora de finiquito Puebla 2026", "Como estimar finiquito en Puebla con salario diario, fechas y prestaciones proporcionales."),
+  article("calculadora-finiquito-cdmx", "Calculadora de finiquito CDMX 2026", "Guia para estimar finiquito en Ciudad de Mexico usando reglas laborales federales.", "finiquito"),
+  article("calculadora-finiquito-puebla", "Calculadora de finiquito Puebla 2026", "Como estimar finiquito en Puebla con salario diario, fechas y prestaciones proporcionales.", "finiquito"),
   article("isr-finiquito-mexico", "ISR en finiquito: que considerar en Mexico", "Puntos basicos sobre impuestos en pagos laborales y por que esta herramienta muestra estimaciones brutas."),
   article("vacaciones-proporcionales-mexico", "Vacaciones proporcionales en Mexico 2026", "Tabla, formula y ejemplo para calcular vacaciones proporcionales y prima vacacional."),
   article("aguinaldo-proporcional-renuncia", "Aguinaldo proporcional por renuncia", "Como estimar aguinaldo cuando la relacion laboral termina antes de diciembre."),
@@ -457,6 +457,7 @@ export function getPageBySlug(slug: string): SitePage | undefined {
 
 export function getRelatedPages(page: SitePage, limit = 4): SitePage[] {
   const group = guideGroups.find((item) => item.slugs.includes(page.slug) || item.toolSlug === page.slug);
+  const matchingToolPage = page.tool ? toolPages.find((item) => item.tool === page.tool && item.slug !== page.slug) : undefined;
   const groupedPages = group
     ? [group.toolSlug, ...group.slugs]
         .filter((slug) => slug !== page.slug)
@@ -465,7 +466,8 @@ export function getRelatedPages(page: SitePage, limit = 4): SitePage[] {
     : [];
 
   const fallbackPages = [...toolPages, ...articlePages].filter((item) => item.slug !== page.slug);
-  return [...groupedPages, ...fallbackPages.filter((item) => !groupedPages.some((grouped) => grouped.slug === item.slug))].slice(0, limit);
+  const preferredPages = [matchingToolPage, ...groupedPages].filter((item): item is SitePage => Boolean(item));
+  return [...preferredPages, ...fallbackPages.filter((item) => !preferredPages.some((preferred) => preferred.slug === item.slug))].slice(0, limit);
 }
 
 function getArticleSections(slug: string): { title: string; body: string }[] {
@@ -1242,10 +1244,11 @@ function getLegalSections(slug: string): { title: string; body: string }[] {
   );
 }
 
-function article(slug: string, h1: string, summary: string): SitePage {
+function article(slug: string, h1: string, summary: string, tool?: ToolKind): SitePage {
   return {
     slug,
     kind: "article",
+    tool,
     title: `${h1} | Calculadoras Laborales MX`,
     description: summary,
     h1,
