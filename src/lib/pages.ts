@@ -342,6 +342,11 @@ export const pages: SitePage[] = [
   article("liquidacion-por-despido-injustificado", "Liquidacion por despido injustificado en Mexico", "Conceptos frecuentes en una separacion por despido y diferencias frente al finiquito."),
   article("calculadora-finiquito-cdmx", "Calculadora de finiquito CDMX 2026", "Guia para estimar finiquito en Ciudad de Mexico usando reglas laborales federales.", "finiquito"),
   article("calculadora-finiquito-puebla", "Calculadora de finiquito Puebla 2026", "Como estimar finiquito en Puebla con salario diario, fechas y prestaciones proporcionales.", "finiquito"),
+  article("calculadora-finiquito-edomex", "Calculadora de finiquito Estado de Mexico 2026", "Estimador de finiquito para trabajadores en Edomex con salario diario, fechas y prestaciones proporcionales.", "finiquito"),
+  article("calculadora-finiquito-guadalajara", "Calculadora de finiquito Guadalajara 2026", "Calcula una estimacion de finiquito en Guadalajara con aguinaldo, vacaciones y prima vacacional proporcional.", "finiquito"),
+  article("calculadora-finiquito-monterrey", "Calculadora de finiquito Monterrey 2026", "Herramienta para estimar finiquito en Monterrey usando salario diario bruto y fechas de la relacion laboral.", "finiquito"),
+  article("calculadora-finiquito-tijuana", "Calculadora de finiquito Tijuana 2026", "Guia y calculadora para estimar finiquito en Tijuana con desglose de prestaciones proporcionales.", "finiquito"),
+  article("calculadora-finiquito-veracruz", "Calculadora de finiquito Veracruz 2026", "Estimacion orientativa de finiquito en Veracruz para revisar salario pendiente y prestaciones proporcionales.", "finiquito"),
   article("isr-finiquito-mexico", "ISR en finiquito: que considerar en Mexico", "Puntos basicos sobre impuestos en pagos laborales y por que esta herramienta muestra estimaciones brutas."),
   article("vacaciones-proporcionales-mexico", "Vacaciones proporcionales en Mexico 2026", "Tabla, formula y ejemplo para calcular vacaciones proporcionales y prima vacacional."),
   article("aguinaldo-proporcional-renuncia", "Aguinaldo proporcional por renuncia", "Como estimar aguinaldo cuando la relacion laboral termina antes de diciembre."),
@@ -442,6 +447,11 @@ export const guideGroups = [
     slugs: [
       "calculadora-finiquito-cdmx",
       "calculadora-finiquito-puebla",
+      "calculadora-finiquito-edomex",
+      "calculadora-finiquito-guadalajara",
+      "calculadora-finiquito-monterrey",
+      "calculadora-finiquito-tijuana",
+      "calculadora-finiquito-veracruz",
       "finiquito-con-salario-variable",
       "finiquito-trabajador-confianza",
       "salario-diario-integrado-ejemplo",
@@ -538,6 +548,91 @@ function getArticleSections(slug: string): { title: string; body: string }[] {
       title: "Antes de aceptar el pago",
       body:
         "Compara el monto ofrecido con el desglose. Si el patron incluye conceptos con nombres distintos, pide equivalencia clara antes de firmar finiquito o convenio.",
+    },
+  ],
+  "calculadora-finiquito-edomex": [
+    {
+      title: "Uso para trabajadores en Edomex",
+      body:
+        "El Estado de Mexico comparte la misma base laboral federal para conceptos minimos como aguinaldo, vacaciones y prima vacacional. La ubicacion ayuda a orientar busquedas y tramites, pero no cambia por si sola la formula base.",
+    },
+    {
+      title: "Datos para una estimacion util",
+      body:
+        "Captura salario diario bruto, fecha real de ingreso, fecha de salida y dias pendientes de pago. Si trabajas cerca de CDMX o cambiaste de centro laboral, usa las fechas y recibos de la relacion que estas revisando.",
+    },
+    {
+      title: "Cuando pedir desglose",
+      body:
+        "Si la empresa entrega un total unico, pide que separe salario pendiente, aguinaldo proporcional, vacaciones proporcionales y prima vacacional. Ese desglose facilita comparar la oferta con la calculadora.",
+    },
+  ],
+  "calculadora-finiquito-guadalajara": [
+    {
+      title: "Calculo para Guadalajara",
+      body:
+        "Para una relacion laboral en Guadalajara, la estimacion se apoya en reglas federales. Los conceptos minimos no dependen de la ciudad, pero la pagina te ayuda a revisar el caso con lenguaje y busqueda local.",
+    },
+    {
+      title: "Que revisar en nomina",
+      body:
+        "Usa recibos recientes para confirmar salario diario, pagos variables y vacaciones tomadas. Si recibias comisiones, bonos o prestaciones superiores, el resultado debe tratarse como una base de comparacion, no como cierre definitivo.",
+    },
+    {
+      title: "Antes de firmar",
+      body:
+        "Compara el finiquito ofrecido con los conceptos separados. Si hay renuncia, convenio o salida por despido, revisa que el documento corresponda al motivo real de terminacion.",
+    },
+  ],
+  "calculadora-finiquito-monterrey": [
+    {
+      title: "Estimacion en Monterrey",
+      body:
+        "La calculadora sirve para trabajadores en Monterrey que necesitan una primera estimacion de finiquito. Usa la Ley Federal del Trabajo como referencia general para prestaciones proporcionales.",
+    },
+    {
+      title: "Salario diario y variables",
+      body:
+        "En empleos con bonos, comisiones, turnos o pagos variables, conviene revisar varios recibos antes de capturar el salario diario. Una captura demasiado baja puede subestimar aguinaldo, vacaciones y prima vacacional.",
+    },
+    {
+      title: "Revision del pago ofrecido",
+      body:
+        "Si recursos humanos entrega un monto diferente, pregunta que conceptos incluyo y cuales excluyo. Diferencias frecuentes vienen de dias pendientes, vacaciones no disfrutadas o prestaciones superiores pactadas.",
+    },
+  ],
+  "calculadora-finiquito-tijuana": [
+    {
+      title: "Uso para Tijuana",
+      body:
+        "Esta pagina ayuda a estimar finiquito para trabajadores en Tijuana con salario en pesos mexicanos. La herramienta no calcula situaciones especiales de moneda, viaticos o pagos fronterizos no documentados.",
+    },
+    {
+      title: "Captura de fechas",
+      body:
+        "La fecha de ingreso y la fecha de salida determinan aguinaldo y vacaciones proporcionales. Si hubo reingresos, pausas o contratos separados, revisa cual periodo debe usarse para el pago final.",
+    },
+    {
+      title: "Documentos recomendados",
+      body:
+        "Ten a la mano contrato, recibos de nomina, control de vacaciones y cualquier acuerdo de prestaciones. Esos documentos ayudan a explicar diferencias entre la estimacion y la propuesta del patron.",
+    },
+  ],
+  "calculadora-finiquito-veracruz": [
+    {
+      title: "Calculo orientativo en Veracruz",
+      body:
+        "Para trabajadores en Veracruz, el finiquito normalmente incluye salario pendiente, aguinaldo proporcional, vacaciones proporcionales y prima vacacional. La calculadora muestra un desglose inicial en MXN.",
+    },
+    {
+      title: "No mezclar conceptos",
+      body:
+        "Finiquito y liquidacion no son lo mismo. Si hubo despido o disputa sobre la salida, separa prestaciones adeudadas de posibles conceptos indemnizatorios antes de aceptar una cifra final.",
+    },
+    {
+      title: "Como usar el resultado",
+      body:
+        "Usa el total como referencia para pedir un recibo detallado. Si el pago es menor, revisa dias trabajados no pagados, vacaciones pendientes y si existe alguna prestacion superior en contrato o politica interna.",
     },
   ],
   "isr-finiquito-mexico": [
