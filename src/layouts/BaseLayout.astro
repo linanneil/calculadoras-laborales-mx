@@ -1,6 +1,6 @@
 ---
 import "remixicon/fonts/remixicon.css";
-import { analytics, SITE, updatedDate, withBase } from "../lib/site";
+import { analytics, pagePath, SITE, updatedDate, withBase } from "../lib/site";
 import { legalPages, toolPages, type SitePage } from "../lib/pages";
 import { buildStructuredData } from "../lib/seo";
 
@@ -13,7 +13,7 @@ type Props = {
 };
 
 const { title, description, slug = "", faq = [], page } = Astro.props;
-const canonicalPath = withBase(slug ? `/${slug}` : "/");
+const canonicalPath = pagePath(slug);
 const canonical = new URL(canonicalPath, Astro.site ?? SITE.url).toString();
 const structuredData = buildStructuredData({ title, description, canonical, slug, page });
 const faqJson =
@@ -65,9 +65,9 @@ const faqJson =
         <span>{SITE.name}</span>
       </a>
       <nav aria-label="Navegacion principal">
-        <a href={withBase("/guias")}>Guias</a>
+        <a href={pagePath("guias")}>Guias</a>
         {toolPages.slice(0, 4).map((page) => (
-          <a href={withBase(`/${page.slug}`)}>
+          <a href={pagePath(page.slug)}>
             {page.tool === "finiquito" ? "Finiquito" : page.tool === "liquidacion" ? "Liquidacion" : page.tool === "aguinaldo" ? "Aguinaldo" : "Vacaciones"}
           </a>
         ))}
@@ -86,7 +86,7 @@ const faqJson =
         <p>Estimaciones laborales para Mexico. Ultima actualizacion: {updatedDate}.</p>
       </div>
       <nav aria-label="Paginas legales">
-        {legalPages.map((page) => <a href={withBase(`/${page.slug}`)}>{page.h1}</a>)}
+        {legalPages.map((page) => <a href={pagePath(page.slug)}>{page.h1}</a>)}
       </nav>
     </footer>
   </body>

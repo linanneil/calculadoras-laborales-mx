@@ -8,7 +8,7 @@ export const GET: APIRoute = ({ site }) => {
   const urls = ["", "guias", ...pages.map((page) => page.slug)]
     .map(
       (slug) => `  <url>
-    <loc>${new URL(slug ? `${base}/${slug}` : `${base}/`, origin).toString()}</loc>
+    <loc>${new URL(slug ? `${base}/${slug}/` : `${base}/`, origin).toString()}</loc>
     <lastmod>${updatedIsoDate}</lastmod>
     <changefreq>monthly</changefreq>
     <priority>${slug ? "0.8" : "1.0"}</priority>

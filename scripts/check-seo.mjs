@@ -20,7 +20,8 @@ const sitemap = readFileSync(join(distDir, "sitemap.xml"), "utf8");
 const locs = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map((match) => match[1]);
 check("sitemap.xml", locs.length === new Set(locs).size, "duplicate sitemap URLs");
 check("sitemap.xml", locs.length === htmlFiles.length, `sitemap URL count ${locs.length} does not match HTML page count ${htmlFiles.length}`);
-check("sitemap.xml", count(sitemap, /<lastmod>2026-06-16<\/lastmod>/g) === locs.length, "missing lastmod entries");
+check("sitemap.xml", locs.every((loc) => loc.endsWith("/")), "sitemap URLs should use final trailing-slash URLs");
+check("sitemap.xml", count(sitemap, /<lastmod>\d{4}-\d{2}-\d{2}<\/lastmod>/g) === locs.length, "missing lastmod entries");
 
 const robots = readFileSync(join(distDir, "robots.txt"), "utf8");
 check("robots.txt", robots.includes("Sitemap: https://herramientaslaborales.com/sitemap.xml"), "missing sitemap reference");

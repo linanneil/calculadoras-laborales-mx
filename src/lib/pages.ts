@@ -403,6 +403,7 @@ export const guideGroups = [
       "finiquito-si-trabaje-6-meses",
       "finiquito-menos-de-un-ano",
       "finiquito-un-ano-trabajado",
+      "renuncia-sin-preaviso-finiquito",
       "salario-pendiente-finiquito",
       "recibo-finiquito-que-debe-incluir",
       "checklist-antes-firmar-finiquito",
@@ -468,16 +469,31 @@ export function getPageBySlug(slug: string): SitePage | undefined {
 export function getRelatedPages(page: SitePage, limit = 4): SitePage[] {
   const group = guideGroups.find((item) => item.slugs.includes(page.slug) || item.toolSlug === page.slug);
   const matchingToolPage = page.tool ? toolPages.find((item) => item.tool === page.tool && item.slug !== page.slug) : undefined;
-  const groupedPages = group
-    ? [group.toolSlug, ...group.slugs]
-        .filter((slug) => slug !== page.slug)
-        .map((slug) => getPageBySlug(slug))
-        .filter((item): item is SitePage => Boolean(item))
-    : [];
+  const groupedSlugs = group ? orderedRelatedSlugs(page.slug, group.toolSlug, group.slugs) : [];
+  const groupedPages = groupedSlugs.map((slug) => getPageBySlug(slug)).filter((item): item is SitePage => Boolean(item));
 
   const fallbackPages = [...toolPages, ...articlePages].filter((item) => item.slug !== page.slug);
-  const preferredPages = [matchingToolPage, ...groupedPages].filter((item): item is SitePage => Boolean(item));
+  const preferredPages = uniquePages([matchingToolPage, ...groupedPages].filter((item): item is SitePage => Boolean(item)));
   return [...preferredPages, ...fallbackPages.filter((item) => !preferredPages.some((preferred) => preferred.slug === item.slug))].slice(0, limit);
+}
+
+function orderedRelatedSlugs(currentSlug: string, toolSlug: string, slugs: string[]): string[] {
+  const siblings = slugs.filter((slug) => slug !== currentSlug);
+  const currentIndex = slugs.indexOf(currentSlug);
+  if (currentSlug === toolSlug || currentIndex < 0) return [toolSlug, ...siblings].filter((slug) => slug !== currentSlug);
+
+  const after = slugs.slice(currentIndex + 1);
+  const before = slugs.slice(0, currentIndex);
+  return [toolSlug, ...after, ...before].filter((slug) => slug !== currentSlug);
+}
+
+function uniquePages(items: SitePage[]): SitePage[] {
+  const seen = new Set<string>();
+  return items.filter((item) => {
+    if (seen.has(item.slug)) return false;
+    seen.add(item.slug);
+    return true;
+  });
 }
 
 function getArticleSections(slug: string): { title: string; body: string }[] {

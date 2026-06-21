@@ -3,7 +3,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import ToolCalculator from "../components/ToolCalculator.astro";
 import AdPlaceholder from "../components/AdPlaceholder.astro";
 import { getRelatedPages, pages } from "../lib/pages";
-import { SITE, updatedDate, withBase } from "../lib/site";
+import { pagePath, SITE, updatedDate } from "../lib/site";
 
 export function getStaticPaths() {
   return pages.map((page) => ({
@@ -104,7 +104,7 @@ const related = getRelatedPages(page, 5);
       <AdPlaceholder />
       <div class="panel related">
         <h2>Tambien te puede servir</h2>
-        {related.map((item) => <a href={withBase(`/${item.slug}`)}>{item.h1}</a>)}
+        {related.map((item) => <a href={pagePath(item.slug)}>{item.h1}</a>)}
       </div>
     </aside>
   </section>

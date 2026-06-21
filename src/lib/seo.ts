@@ -13,7 +13,12 @@ type SchemaInput = {
 
 export function buildStructuredData({ title, description, canonical, slug, page }: SchemaInput): JsonLd[] {
   const homeUrl = new URL("/", SITE.url).toString();
+  const organization = publisherSchema();
   const schemas: JsonLd[] = [
+    {
+      "@context": "https://schema.org",
+      ...organization,
+    },
     {
       "@context": "https://schema.org",
       "@type": "WebSite",
@@ -21,7 +26,7 @@ export function buildStructuredData({ title, description, canonical, slug, page 
       url: homeUrl,
       inLanguage: SITE.locale,
       description: SITE.description,
-      publisher: publisherSchema(),
+      publisher: { "@id": organization["@id"] },
     },
     {
       "@context": "https://schema.org",
@@ -41,7 +46,7 @@ export function buildStructuredData({ title, description, canonical, slug, page 
       inLanguage: SITE.locale,
       isAccessibleForFree: true,
       description,
-      publisher: publisherSchema(),
+      publisher: { "@id": organization["@id"] },
       dateModified: updatedIsoDate,
     });
   }
@@ -55,8 +60,8 @@ export function buildStructuredData({ title, description, canonical, slug, page 
       url: canonical,
       mainEntityOfPage: canonical,
       inLanguage: SITE.locale,
-      author: publisherSchema(),
-      publisher: publisherSchema(),
+      author: { "@id": organization["@id"] },
+      publisher: { "@id": organization["@id"] },
       datePublished: updatedIsoDate,
       dateModified: updatedIsoDate,
     });
@@ -66,10 +71,36 @@ export function buildStructuredData({ title, description, canonical, slug, page 
 }
 
 function publisherSchema(): JsonLd {
+  const organizationId = new URL("/#organization", SITE.url).toString();
+  const logoUrl = new URL("/favicon.svg", SITE.url).toString();
   return {
+    "@id": organizationId,
     "@type": "Organization",
     name: SITE.name,
     url: SITE.url,
+    email: SITE.contactEmail,
+    logo: {
+      "@type": "ImageObject",
+      url: logoUrl,
+    },
+    contactPoint: {
+      "@type": "ContactPoint",
+      contactType: "editorial support",
+      email: SITE.contactEmail,
+      availableLanguage: ["es-MX", "es"],
+    },
+    areaServed: {
+      "@type": "Country",
+      name: "Mexico",
+    },
+    knowsAbout: [
+      "finiquito en Mexico",
+      "liquidacion laboral",
+      "aguinaldo proporcional",
+      "vacaciones proporcionales",
+      "salario diario integrado",
+      "Ley Federal del Trabajo",
+    ],
   };
 }
 

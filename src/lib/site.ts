@@ -17,6 +17,10 @@ export function withBase(path: string): string {
   return normalized === "/" ? `${BASE_PATH}/` : `${BASE_PATH}${normalized}`;
 }
 
+export function pagePath(slug = ""): string {
+  return slug ? withBase(`/${slug}/`) : withBase("/");
+}
+
 export const formatMxn = (value: number) =>
   new Intl.NumberFormat("es-MX", {
     style: "currency",
@@ -24,8 +28,8 @@ export const formatMxn = (value: number) =>
     maximumFractionDigits: 2,
   }).format(Number.isFinite(value) ? value : 0);
 
-export const updatedDate = "16 de junio de 2026";
-export const updatedIsoDate = "2026-06-16";
+export const updatedDate = "21 de junio de 2026";
+export const updatedIsoDate = "2026-06-21";
 
 export const analytics = {
   gaMeasurementId: import.meta.env.PUBLIC_GA_MEASUREMENT_ID || "",

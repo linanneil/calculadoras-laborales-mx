@@ -2,7 +2,7 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import AdPlaceholder from "../components/AdPlaceholder.astro";
 import ToolCalculator from "../components/ToolCalculator.astro";
-import { SITE, withBase } from "../lib/site";
+import { pagePath, SITE } from "../lib/site";
 import { articlePages, getPageBySlug, guideGroups, toolPages } from "../lib/pages";
 
 const featuredGuides = articlePages.slice(0, 6);
@@ -27,7 +27,7 @@ const groupedGuides = guideGroups.map((group) => ({
         <span><i class="ri-money-dollar-circle-line" aria-hidden="true"></i> Resultados en MXN</span>
       </div>
       <div class="hero-actions">
-        <a class="button" href={withBase("/calculadora-finiquito")}>Abrir calculadora de finiquito <i class="ri-arrow-right-line" aria-hidden="true"></i></a>
+        <a class="button" href={pagePath("calculadora-finiquito")}>Abrir calculadora de finiquito <i class="ri-arrow-right-line" aria-hidden="true"></i></a>
         <a class="secondary-link" href="#calculadoras">Ver todas las calculadoras <i class="ri-arrow-right-s-line" aria-hidden="true"></i></a>
       </div>
     </div>
@@ -72,7 +72,7 @@ const groupedGuides = guideGroups.map((group) => ({
     <div class="grid">
       {toolPages.map((page) => (
         <article class="card">
-          <h3><a href={withBase(`/${page.slug}`)}>{page.h1}</a></h3>
+          <h3><a href={pagePath(page.slug)}>{page.h1}</a></h3>
           <p>{page.description}</p>
         </article>
       ))}
@@ -85,7 +85,7 @@ const groupedGuides = guideGroups.map((group) => ({
       <div class="grid">
         {featuredGuides.map((page) => (
           <article class="card">
-            <h3><a href={withBase(`/${page.slug}`)}>{page.h1}</a></h3>
+            <h3><a href={pagePath(page.slug)}>{page.h1}</a></h3>
             <p>{page.description}</p>
           </article>
         ))}
@@ -109,10 +109,10 @@ const groupedGuides = guideGroups.map((group) => ({
           </div>
           <div class="cluster-links">
             {group.pages.map((page) => (
-              <a href={withBase(`/${page.slug}`)}>{page.h1}</a>
+              <a href={pagePath(page.slug)}>{page.h1}</a>
             ))}
           </div>
-          {group.tool && <a class="cluster-tool" href={withBase(`/${group.tool.slug}`)}>Abrir {group.tool.h1}</a>}
+          {group.tool && <a class="cluster-tool" href={pagePath(group.tool.slug)}>Abrir {group.tool.h1}</a>}
         </article>
       ))}
     </div>

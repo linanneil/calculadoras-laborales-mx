@@ -2,7 +2,7 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import AdPlaceholder from "../components/AdPlaceholder.astro";
 import { articlePages, getPageBySlug, guideGroups, toolPages } from "../lib/pages";
-import { withBase } from "../lib/site";
+import { pagePath } from "../lib/site";
 
 const title = "Guias laborales en Mexico | Calculadoras Laborales MX";
 const description =
@@ -30,7 +30,7 @@ const groupedGuides = guideGroups.map((group) => ({
       <h2>Calculadoras principales</h2>
       <div>
         {toolPages.map((page) => (
-          <a href={withBase(`/${page.slug}`)}>{page.h1}</a>
+          <a href={pagePath(page.slug)}>{page.h1}</a>
         ))}
       </div>
     </div>
@@ -44,7 +44,7 @@ const groupedGuides = guideGroups.map((group) => ({
     <div class="guide-grid featured">
       {featured.map((page) => (
         <article>
-          <h3><a href={withBase(`/${page.slug}`)}>{page.h1}</a></h3>
+          <h3><a href={pagePath(page.slug)}>{page.h1}</a></h3>
           <p>{page.description}</p>
         </article>
       ))}
@@ -61,11 +61,11 @@ const groupedGuides = guideGroups.map((group) => ({
               <div>
                 <h3 id={`topic-${group.toolSlug}`}>{group.title}</h3>
                 <p>{group.description}</p>
-                {group.tool && <a class="tool-link" href={withBase(`/${group.tool.slug}`)}>Usar {group.tool.h1}</a>}
+                {group.tool && <a class="tool-link" href={pagePath(group.tool.slug)}>Usar {group.tool.h1}</a>}
               </div>
               <div class="guide-list">
                 {group.pages.map((page) => (
-                  <a href={withBase(`/${page.slug}`)}>
+                  <a href={pagePath(page.slug)}>
                     <span>{page.h1}</span>
                     <small>{page.description}</small>
                   </a>
@@ -87,7 +87,7 @@ const groupedGuides = guideGroups.map((group) => ({
       <AdPlaceholder />
       <div class="panel related">
         <h2>Herramientas</h2>
-        {toolPages.map((page) => <a href={withBase(`/${page.slug}`)}>{page.h1}</a>)}
+        {toolPages.map((page) => <a href={pagePath(page.slug)}>{page.h1}</a>)}
       </div>
     </aside>
   </section>
