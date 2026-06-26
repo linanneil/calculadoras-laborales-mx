@@ -341,7 +341,7 @@ export const pages: SitePage[] = [
   article("finiquito-renuncia-voluntaria", "Finiquito por renuncia voluntaria en Mexico 2026", "Que revisar cuando renuncias voluntariamente: salario pendiente, aguinaldo, vacaciones y prima vacacional."),
   article("liquidacion-por-despido-injustificado", "Liquidacion por despido injustificado en Mexico", "Conceptos frecuentes en una separacion por despido y diferencias frente al finiquito."),
   article("calculadora-finiquito-cdmx", "Calculadora de finiquito CDMX 2026", "Guia para estimar finiquito en Ciudad de Mexico usando reglas laborales federales.", "finiquito"),
-  article("calculadora-finiquito-puebla", "Calculadora de finiquito Puebla 2026", "Como estimar finiquito en Puebla con salario diario, fechas y prestaciones proporcionales.", "finiquito"),
+  article("calculadora-finiquito-puebla", "Calculadora de finiquito Puebla", "Calculadora de finiquito Puebla 2026 con salario diario, fechas, aguinaldo, vacaciones y prima vacacional proporcional. Estimacion gratuita en MXN.", "finiquito"),
   article("calculadora-finiquito-edomex", "Calculadora de finiquito Estado de Mexico 2026", "Estimador de finiquito para trabajadores en Edomex con salario diario, fechas y prestaciones proporcionales.", "finiquito"),
   article("calculadora-finiquito-guadalajara", "Calculadora de finiquito Guadalajara 2026", "Calcula una estimacion de finiquito en Guadalajara con aguinaldo, vacaciones y prima vacacional proporcional.", "finiquito"),
   article("calculadora-finiquito-monterrey", "Calculadora de finiquito Monterrey 2026", "Herramienta para estimar finiquito en Monterrey usando salario diario bruto y fechas de la relacion laboral.", "finiquito"),
@@ -551,19 +551,19 @@ function getArticleSections(slug: string): { title: string; body: string }[] {
   ],
   "calculadora-finiquito-puebla": [
     {
-      title: "Uso para trabajadores en Puebla",
+      title: "Calculadora de finiquito Puebla: uso recomendado",
       body:
-        "La estimacion usa reglas laborales federales aplicables en Mexico. Puebla puede importar para la oficina o autoridad local, pero los conceptos minimos se calculan con la LFT.",
+        "Esta calculadora de finiquito Puebla estima salario pendiente, aguinaldo proporcional, vacaciones proporcionales y prima vacacional. Usa reglas laborales federales aplicables en Mexico; Puebla orienta la busqueda local y posibles tramites, pero no cambia por si sola la formula base.",
     },
     {
-      title: "Ejemplo de revision",
+      title: "Como calcular finiquito en Puebla",
       body:
-        "Si saliste el 15 de junio, captura esa fecha como salida y agrega solo los dias ya trabajados que aun no fueron pagados. La herramienta separa aguinaldo, vacaciones y prima vacacional.",
+        "Captura tu salario diario bruto, fecha de ingreso, fecha de salida y dias ya trabajados que aun no fueron pagados. La herramienta separa cada concepto para que puedas comparar el total con el recibo o propuesta del patron.",
     },
     {
-      title: "Antes de aceptar el pago",
+      title: "Antes de firmar un finiquito en Puebla",
       body:
-        "Compara el monto ofrecido con el desglose. Si el patron incluye conceptos con nombres distintos, pide equivalencia clara antes de firmar finiquito o convenio.",
+        "Pide un desglose por escrito antes de firmar. Si el patron incluye conceptos con nombres distintos, solicita equivalencia clara para identificar salario pendiente, aguinaldo, vacaciones y prima vacacional.",
     },
   ],
   "calculadora-finiquito-edomex": [
@@ -1356,6 +1356,7 @@ function getLegalSections(slug: string): { title: string; body: string }[] {
 }
 
 function article(slug: string, h1: string, summary: string, tool?: ToolKind): SitePage {
+  const override = getArticleOverride(slug);
   return {
     slug,
     kind: "article",
@@ -1364,9 +1365,37 @@ function article(slug: string, h1: string, summary: string, tool?: ToolKind): Si
     description: summary,
     h1,
     intro: summary,
+    quickAnswer: override.quickAnswer,
     sections: getArticleSections(slug),
-    faqs: commonFaq,
+    faqs: override.faqs ?? commonFaq,
     sources: officialSources,
+  };
+}
+
+function getArticleOverride(slug: string): Partial<Pick<SitePage, "quickAnswer" | "faqs">> {
+  if (slug !== "calculadora-finiquito-puebla") return {};
+
+  return {
+    quickAnswer:
+      "Para calcular finiquito en Puebla, suma salario pendiente, aguinaldo proporcional, vacaciones proporcionales y prima vacacional. La base minima se rige por reglas federales de Mexico; usa Puebla como contexto local y revisa siempre el desglose antes de firmar.",
+    faqs: [
+      {
+        question: "Como usar la calculadora de finiquito Puebla?",
+        answer:
+          "Ingresa salario diario bruto, fecha de ingreso, fecha de salida y dias pendientes de pago. La calculadora muestra una estimacion bruta en MXN separando salario pendiente, aguinaldo, vacaciones y prima vacacional.",
+      },
+      {
+        question: "El finiquito en Puebla se calcula diferente al resto de Mexico?",
+        answer:
+          "Para trabajadores del sector privado, los conceptos minimos se basan en la Ley Federal del Trabajo. Puebla puede importar para orientacion o tramite local, pero no cambia por si sola los dias minimos de aguinaldo, vacaciones o prima vacacional.",
+      },
+      {
+        question: "Que debo revisar antes de firmar finiquito en Puebla?",
+        answer:
+          "Revisa que el recibo separe salario pendiente, aguinaldo proporcional, vacaciones proporcionales y prima vacacional. Si hay despido, presion para firmar o falta de desglose, busca orientacion antes de aceptar.",
+      },
+      ...commonFaq,
+    ],
   };
 }
 
