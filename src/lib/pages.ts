@@ -1373,30 +1373,148 @@ function article(slug: string, h1: string, summary: string, tool?: ToolKind): Si
 }
 
 function getArticleOverride(slug: string): Partial<Pick<SitePage, "quickAnswer" | "faqs">> {
-  if (slug !== "calculadora-finiquito-puebla") return {};
-
-  return {
-    quickAnswer:
-      "Para calcular finiquito en Puebla, suma salario pendiente, aguinaldo proporcional, vacaciones proporcionales y prima vacacional. La base minima se rige por reglas federales de Mexico; usa Puebla como contexto local y revisa siempre el desglose antes de firmar.",
-    faqs: [
-      {
-        question: "Como usar la calculadora de finiquito Puebla?",
-        answer:
-          "Ingresa salario diario bruto, fecha de ingreso, fecha de salida y dias pendientes de pago. La calculadora muestra una estimacion bruta en MXN separando salario pendiente, aguinaldo, vacaciones y prima vacacional.",
-      },
-      {
-        question: "El finiquito en Puebla se calcula diferente al resto de Mexico?",
-        answer:
-          "Para trabajadores del sector privado, los conceptos minimos se basan en la Ley Federal del Trabajo. Puebla puede importar para orientacion o tramite local, pero no cambia por si sola los dias minimos de aguinaldo, vacaciones o prima vacacional.",
-      },
-      {
-        question: "Que debo revisar antes de firmar finiquito en Puebla?",
-        answer:
-          "Revisa que el recibo separe salario pendiente, aguinaldo proporcional, vacaciones proporcionales y prima vacacional. Si hay despido, presion para firmar o falta de desglose, busca orientacion antes de aceptar.",
-      },
-      ...commonFaq,
-    ],
-  };
+  switch (slug) {
+    case "calculadora-finiquito-puebla":
+      return {
+        quickAnswer:
+          "Para calcular finiquito en Puebla, suma salario pendiente, aguinaldo proporcional, vacaciones proporcionales y prima vacacional. La base minima se rige por reglas federales de Mexico; usa Puebla como contexto local y revisa siempre el desglose antes de firmar.",
+        faqs: [
+          {
+            question: "Como usar la calculadora de finiquito Puebla?",
+            answer:
+              "Ingresa salario diario bruto, fecha de ingreso, fecha de salida y dias pendientes de pago. La calculadora muestra una estimacion bruta en MXN separando salario pendiente, aguinaldo, vacaciones y prima vacacional.",
+          },
+          {
+            question: "El finiquito en Puebla se calcula diferente al resto de Mexico?",
+            answer:
+              "Para trabajadores del sector privado, los conceptos minimos se basan en la Ley Federal del Trabajo. Puebla puede importar para orientacion o tramite local, pero no cambia por si sola los dias minimos de aguinaldo, vacaciones o prima vacacional.",
+          },
+          {
+            question: "Que debo revisar antes de firmar finiquito en Puebla?",
+            answer:
+              "Revisa que el recibo separe salario pendiente, aguinaldo proporcional, vacaciones proporcionales y prima vacacional. Si hay despido, presion para firmar o falta de desglose, busca orientacion antes de aceptar.",
+          },
+          ...commonFaq,
+        ],
+      };
+    case "finiquito-por-renuncia-mexico":
+      return {
+        quickAnswer:
+          "Si renuncias en Mexico, normalmente revisas salario pendiente, aguinaldo proporcional, vacaciones proporcionales y prima vacacional. La renuncia no elimina prestaciones ya generadas; pide desglose antes de firmar.",
+        faqs: [
+          {
+            question: "Tengo derecho a finiquito si renuncio?",
+            answer:
+              "Si ya generaste salario pendiente, aguinaldo proporcional, vacaciones proporcionales o prima vacacional, esos conceptos pueden formar parte del finiquito aunque la salida sea por renuncia voluntaria.",
+          },
+          {
+            question: "Que pasa si renuncio y no me pagan finiquito?",
+            answer:
+              "Guarda recibos, contrato, fecha de salida y mensajes con la empresa. Pide un desglose por escrito y compara la respuesta contra una estimacion por conceptos antes de aceptar un total cerrado.",
+          },
+          {
+            question: "La renuncia voluntaria incluye liquidacion?",
+            answer:
+              "Normalmente la renuncia voluntaria se revisa como finiquito, no como liquidacion con indemnizacion. Si hubo presion, despido o acuerdo especial, conviene revisar el caso antes de firmar.",
+          },
+          ...commonFaq,
+        ],
+      };
+    case "me-pueden-obligar-a-firmar-renuncia":
+      return {
+        quickAnswer:
+          "No deberias firmar una renuncia si no refleja una decision voluntaria o si no entiendes el documento. Documenta presiones, pide copia y revisa el pago ofrecido antes de firmar.",
+        faqs: [
+          {
+            question: "Que hago si me quieren obligar a firmar renuncia?",
+            answer:
+              "No firmes documentos en blanco ni textos que no entiendas. Pide copia, conserva mensajes o correos, anota fechas y solicita que cualquier propuesta de pago venga desglosada por escrito.",
+          },
+          {
+            question: "Firmar renuncia cambia mi finiquito o liquidacion?",
+            answer:
+              "Puede cambiar la forma en que se interpreta la salida. Una renuncia suele llevar a finiquito; un despido o convenio con indemnizacion puede requerir revisar liquidacion ademas de prestaciones pendientes.",
+          },
+          {
+            question: "Puedo pedir copia antes de firmar?",
+            answer:
+              "Si. Antes de firmar conviene leer con calma, pedir copia del documento y confirmar que fechas, salario, causa de salida y desglose de pago coincidan con tu historial laboral.",
+          },
+          ...commonFaq,
+        ],
+      };
+    case "que-pasa-si-no-me-pagan-finiquito":
+      return {
+        quickAnswer:
+          "Si no te pagan finiquito, documenta fecha de salida, recibos, contrato y mensajes; pide un desglose por escrito y una fecha de pago. Si no hay respuesta, busca orientacion laboral.",
+        faqs: [
+          {
+            question: "Cuanto tiempo tiene la empresa para pagar finiquito?",
+            answer:
+              "Lo mas practico es pedir por escrito una fecha concreta de pago y el desglose de conceptos. Si pasan los dias sin respuesta o el monto no coincide, busca orientacion laboral con tus documentos a la mano.",
+          },
+          {
+            question: "Que documentos necesito si no me pagan finiquito?",
+            answer:
+              "Reune contrato, recibos de nomina, fecha de ingreso, fecha de salida, mensajes de la empresa, comprobantes de vacaciones y cualquier propuesta de pago o recibo que te hayan dado.",
+          },
+          {
+            question: "Puedo calcular una referencia antes de reclamar?",
+            answer:
+              "Si. Una estimacion por salario pendiente, aguinaldo, vacaciones y prima vacacional te ayuda a ordenar el reclamo y detectar si la empresa omitio algun concepto.",
+          },
+          ...commonFaq,
+        ],
+      };
+    case "diferencia-finiquito-liquidacion":
+      return {
+        quickAnswer:
+          "Finiquito y liquidacion no son lo mismo. El finiquito cubre prestaciones pendientes; la liquidacion puede incluir indemnizacion si existe despido o acuerdo con pago indemnizatorio.",
+        faqs: [
+          {
+            question: "Me toca finiquito o liquidacion si me despiden?",
+            answer:
+              "En un despido se revisan prestaciones pendientes y, segun el caso, posibles conceptos de liquidacion o indemnizacion. Por eso conviene separar finiquito, indemnizacion y prima de antiguedad.",
+          },
+          {
+            question: "La liquidacion incluye finiquito?",
+            answer:
+              "Muchas propuestas de liquidacion incluyen tambien conceptos de finiquito, pero deben aparecer separados. Pide desglose para saber que parte corresponde a prestaciones ya generadas.",
+          },
+          {
+            question: "Por que la empresa dice finiquito si fue despido?",
+            answer:
+              "A veces se usa finiquito como nombre general del pago final. Lo importante es revisar la causa de salida, el documento que firmas y los conceptos incluidos, no solo el titulo del recibo.",
+          },
+          ...commonFaq,
+        ],
+      };
+    case "aguinaldo-si-renuncio-antes-de-diciembre":
+      return {
+        quickAnswer:
+          "Si renuncias antes de diciembre, normalmente revisas aguinaldo proporcional por los dias trabajados en el ano. Usa salario diario, dias de aguinaldo y dias trabajados para estimarlo.",
+        faqs: [
+          {
+            question: "Tengo aguinaldo si renuncio antes de diciembre?",
+            answer:
+              "Si trabajaste parte del ano, puedes revisar el aguinaldo proporcional dentro del finiquito. No necesitas llegar a diciembre para estimar la parte generada.",
+          },
+          {
+            question: "Como se calcula el aguinaldo proporcional al renunciar?",
+            answer:
+              "Una referencia simple es salario diario por dias de aguinaldo, multiplicado por dias trabajados en el ano y dividido entre dias del ano. Usa los dias de aguinaldo de tu contrato si son mayores al minimo.",
+          },
+          {
+            question: "El aguinaldo proporcional va dentro del finiquito?",
+            answer:
+              "En una renuncia suele revisarse dentro del finiquito, junto con salario pendiente, vacaciones proporcionales y prima vacacional. Pide que aparezca separado para poder verificarlo.",
+          },
+          ...commonFaq,
+        ],
+      };
+    default:
+      return {};
+  }
 }
 
 function legal(slug: string, h1: string, intro: string): SitePage {
