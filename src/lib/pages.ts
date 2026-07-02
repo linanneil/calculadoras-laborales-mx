@@ -565,6 +565,11 @@ function getArticleSections(slug: string): { title: string; body: string }[] {
       body:
         "Pide un desglose por escrito antes de firmar. Si el patron incluye conceptos con nombres distintos, solicita equivalencia clara para identificar salario pendiente, aguinaldo, vacaciones y prima vacacional.",
     },
+    {
+      title: "Renuncia, despido o liquidacion en Puebla",
+      body:
+        "Si buscas calcular finiquito por renuncia en Puebla, empieza por las prestaciones proporcionales. Si hubo despido o la empresa habla de liquidacion, separa el finiquito de posibles conceptos indemnizatorios antes de comparar montos.",
+    },
   ],
   "calculadora-finiquito-edomex": [
     {
@@ -1377,7 +1382,7 @@ function getArticleOverride(slug: string): Partial<Pick<SitePage, "quickAnswer" 
     case "calculadora-finiquito-puebla":
       return {
         quickAnswer:
-          "Para calcular finiquito en Puebla, suma salario pendiente, aguinaldo proporcional, vacaciones proporcionales y prima vacacional. La base minima se rige por reglas federales de Mexico; usa Puebla como contexto local y revisa siempre el desglose antes de firmar.",
+          "Para calcular finiquito en Puebla, suma salario pendiente, aguinaldo proporcional, vacaciones proporcionales y prima vacacional. Si la salida fue por renuncia, revisa prestaciones proporcionales; si fue despido, separa finiquito y liquidacion antes de firmar.",
         faqs: [
           {
             question: "Como usar la calculadora de finiquito Puebla?",
@@ -1385,9 +1390,19 @@ function getArticleOverride(slug: string): Partial<Pick<SitePage, "quickAnswer" 
               "Ingresa salario diario bruto, fecha de ingreso, fecha de salida y dias pendientes de pago. La calculadora muestra una estimacion bruta en MXN separando salario pendiente, aguinaldo, vacaciones y prima vacacional.",
           },
           {
+            question: "Como calcular finiquito por renuncia en Puebla?",
+            answer:
+              "Usa salario diario, fecha de ingreso, fecha de salida, dias pendientes de pago y vacaciones ya tomadas. En una renuncia normalmente revisas salario pendiente, aguinaldo proporcional, vacaciones proporcionales y prima vacacional.",
+          },
+          {
             question: "El finiquito en Puebla se calcula diferente al resto de Mexico?",
             answer:
               "Para trabajadores del sector privado, los conceptos minimos se basan en la Ley Federal del Trabajo. Puebla puede importar para orientacion o tramite local, pero no cambia por si sola los dias minimos de aguinaldo, vacaciones o prima vacacional.",
+          },
+          {
+            question: "Puedo usar esta pagina como calculadora de liquidacion Puebla?",
+            answer:
+              "Esta pagina estima finiquito. Si buscas liquidacion en Puebla por despido, primero calcula las prestaciones pendientes y despues revisa por separado indemnizacion, prima de antiguedad u otros conceptos que puedan aplicar.",
           },
           {
             question: "Que debo revisar antes de firmar finiquito en Puebla?",
