@@ -138,3 +138,61 @@ The Puebla page was already receiving impressions and ranking near position 10. 
 - meta description to start with `Calcula finiquito en Puebla gratis en MXN`
 
 Monitor for 3-5 days. Create `calculadora-liquidacion-puebla` only if `calculadora liquidacion puebla` continues receiving impressions.
+
+## 2026-07-08
+
+Source: Google Search Console performance, index coverage, and sitemap reports for `sc-domain:herramientaslaborales.com`. Performance range: 3 months, web search. Performance report last updated 3.5 hours before review. Index coverage report still last updated 2026-06-30.
+
+### Performance summary
+
+- Clicks: 1
+- Impressions: 94
+- CTR: 1.1%
+- Average position: 11.6
+- Main signal: Puebla page still drives nearly all impressions
+
+### Queries
+
+| Query | Clicks | Impressions |
+| --- | ---: | ---: |
+| calculadora de finiquito puebla | 0 | 14 |
+| calcular finiquito puebla | 0 | 10 |
+| calculadora finiquito puebla | 0 | 9 |
+| calcular finiquito por renuncia puebla | 0 | 5 |
+| finiquito puebla | 0 | 3 |
+| calculo de finiquito puebla | 0 | 2 |
+| finiquito calculadora puebla | 0 | 2 |
+| calculadora liquidacion puebla | 0 | 1 |
+| calculo de finiquito por renuncia puebla | 0 | 1 |
+| calculadora de finiquito 2026 | 0 | 1 |
+
+### Pages
+
+| Page | Clicks | Impressions |
+| --- | ---: | ---: |
+| `https://herramientaslaborales.com/` | 1 | 2 |
+| `https://herramientaslaborales.com/calculadora-finiquito-puebla/` | 0 | 88 |
+| `https://herramientaslaborales.com/calculadora-finiquito-puebla` | 0 | 4 |
+| `https://herramientaslaborales.com/privacy-policy/` | 0 | 1 |
+| `https://herramientaslaborales.com/calculadora-finiquito/` | 0 | 1 |
+
+### Index and sitemap
+
+- Index coverage remains stale: last update is still 2026-06-30.
+- Indexed pages: 4.
+- Not indexed pages: 10.
+- Reasons unchanged: page with redirect 6, redirect error 3, crawled - currently not indexed 1.
+- Sitemap report: `https://herramientaslaborales.com/sitemap.xml` was last read 2026-06-21, status success, discovered pages 54.
+- Live sitemap response is 200 XML and was last modified 2026-07-05.
+
+### Decision
+
+No code change needed on 2026-07-08.
+
+- The latest performance data confirms the site is still in early-discovery mode.
+- The CTR is still low, but the previous Puebla title/meta change is too recent to judge.
+- The only new non-Puebla query is `calculadora de finiquito 2026`, and the main calculator already targets that exact intent.
+- `calculadora liquidacion puebla` is still only 1 impression, so a dedicated liquidacion Puebla page is not justified yet.
+- Do not click "validate fix" in GSC without owner approval; it is an external Search Console action.
+
+Next review: wait 3-5 days and check whether Puebla impressions pass 120-150 and whether CTR remains near zero. If yes, consider a second Puebla SERP-title test or a dedicated `calculadora-liquidacion-puebla` page only if liquidacion impressions repeat.
