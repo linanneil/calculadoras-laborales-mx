@@ -196,3 +196,60 @@ No code change needed on 2026-07-08.
 - Do not click "validate fix" in GSC without owner approval; it is an external Search Console action.
 
 Next review: wait 3-5 days and check whether Puebla impressions pass 120-150 and whether CTR remains near zero. If yes, consider a second Puebla SERP-title test or a dedicated `calculadora-liquidacion-puebla` page only if liquidacion impressions repeat.
+
+## 2026-07-11
+
+Source: Google Search Console performance and index coverage reports for `sc-domain:herramientaslaborales.com`. Performance range: 3 months, web search. Performance report last updated 4 hours before review. Index coverage report still last updated 2026-06-30.
+
+### Performance summary
+
+- Clicks: 1
+- Impressions: 120
+- CTR: 0.8%
+- Average position: 11.7
+- Main signal: Puebla page remains the only meaningful page with search demand
+
+### Queries
+
+| Query | Clicks | Impressions |
+| --- | ---: | ---: |
+| calculadora de finiquito puebla | 0 | 21 |
+| calcular finiquito puebla | 0 | 12 |
+| calculadora finiquito puebla | 0 | 10 |
+| calcular finiquito por renuncia puebla | 0 | 7 |
+| calculo de finiquito puebla | 0 | 3 |
+| finiquito puebla | 0 | 3 |
+| calculo de finiquito por renuncia puebla | 0 | 2 |
+| finiquito calculadora puebla | 0 | 2 |
+| calculadora de finiquito 2026 | 0 | 2 |
+| calculadora liquidacion puebla | 0 | 1 |
+
+### Pages
+
+| Page | Clicks | Impressions |
+| --- | ---: | ---: |
+| `https://herramientaslaborales.com/` | 1 | 2 |
+| `https://herramientaslaborales.com/calculadora-finiquito-puebla/` | 0 | 113 |
+| `https://herramientaslaborales.com/calculadora-finiquito-puebla` | 0 | 4 |
+| `https://herramientaslaborales.com/calculadora-finiquito/` | 0 | 2 |
+| `https://herramientaslaborales.com/privacy-policy/` | 0 | 1 |
+
+### Index coverage
+
+- Index coverage remains stale: last update is still 2026-06-30.
+- Indexed pages: 4.
+- Not indexed pages: 10.
+- Reasons unchanged: page with redirect 6, redirect error 3, crawled - currently not indexed 1.
+
+### Decision
+
+The agile trigger was met: impressions reached 120 while CTR stayed below 1%. Triggered the second Puebla SERP-copy test.
+
+Changed Puebla page copy:
+
+- H1/title base from `Calculadora de finiquito Puebla 2026` to `Calculadora de Finiquito en Puebla 2026`
+- meta description from `Calcula finiquito en Puebla gratis en MXN...` to `Quieres una estimacion de tu finiquito o liquidacion en Puebla? Calcula proporcionales segun la LFT 2026 de forma facil, con notas y fuentes oficiales.`
+
+No independent liquidacion Puebla page yet. `calculadora liquidacion puebla` is still only 1 impression.
+
+Next review: wait 3-5 days and compare Puebla CTR and average position against this checkpoint.

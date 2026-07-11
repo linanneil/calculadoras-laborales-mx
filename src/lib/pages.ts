@@ -341,7 +341,7 @@ export const pages: SitePage[] = [
   article("finiquito-renuncia-voluntaria", "Finiquito por renuncia voluntaria en Mexico 2026", "Que revisar cuando renuncias voluntariamente: salario pendiente, aguinaldo, vacaciones y prima vacacional."),
   article("liquidacion-por-despido-injustificado", "Liquidacion por despido injustificado en Mexico", "Conceptos frecuentes en una separacion por despido y diferencias frente al finiquito."),
   article("calculadora-finiquito-cdmx", "Calculadora de finiquito CDMX 2026", "Guia para estimar finiquito en Ciudad de Mexico usando reglas laborales federales.", "finiquito"),
-  article("calculadora-finiquito-puebla", "Calculadora de finiquito Puebla 2026", "Calcula finiquito en Puebla gratis en MXN con salario diario, fechas, aguinaldo, vacaciones y prima vacacional proporcional.", "finiquito"),
+  article("calculadora-finiquito-puebla", "Calculadora de Finiquito en Puebla 2026", "Quieres una estimacion de tu finiquito o liquidacion en Puebla? Calcula proporcionales segun la LFT 2026 de forma facil, con notas y fuentes oficiales.", "finiquito"),
   article("calculadora-finiquito-edomex", "Calculadora de finiquito Estado de Mexico 2026", "Estimador de finiquito para trabajadores en Edomex con salario diario, fechas y prestaciones proporcionales.", "finiquito"),
   article("calculadora-finiquito-guadalajara", "Calculadora de finiquito Guadalajara 2026", "Calcula una estimacion de finiquito en Guadalajara con aguinaldo, vacaciones y prima vacacional proporcional.", "finiquito"),
   article("calculadora-finiquito-monterrey", "Calculadora de finiquito Monterrey 2026", "Herramienta para estimar finiquito en Monterrey usando salario diario bruto y fechas de la relacion laboral.", "finiquito"),
