@@ -4,9 +4,9 @@ import AdPlaceholder from "../components/AdPlaceholder.astro";
 import { articlePages, getPageBySlug, guideGroups, toolPages } from "../lib/pages";
 import { pagePath } from "../lib/site";
 
-const title = "Guias laborales en Mexico | Calculadoras Laborales MX";
+const title = "Guías laborales en México | Calculadoras Laborales MX";
 const description =
-  "Guias practicas sobre finiquito, liquidacion, aguinaldo, vacaciones, prima vacacional y salario diario integrado en Mexico.";
+  "Guías prácticas sobre finiquito, liquidación, aguinaldo, vacaciones, prima vacacional y salario diario integrado en México.";
 
 const featured = articlePages.slice(0, 6);
 const groupedGuides = guideGroups.map((group) => ({
@@ -19,10 +19,10 @@ const groupedGuides = guideGroups.map((group) => ({
 <BaseLayout title={title} description={description} slug="guias">
   <section class="hero guides-hero">
     <div>
-      <p class="eyebrow">Guias laborales</p>
-      <h1>Guias para revisar pagos laborales en Mexico</h1>
+      <p class="eyebrow">Guías laborales</p>
+      <h1>Guías para revisar pagos laborales en México</h1>
       <p class="lead">
-        Explicaciones practicas para entender finiquito, liquidacion, aguinaldo, vacaciones,
+        Explicaciones prácticas para entender finiquito, liquidación, aguinaldo, vacaciones,
         prima vacacional y conceptos relacionados antes de revisar un pago final.
       </p>
     </div>
@@ -39,7 +39,7 @@ const groupedGuides = guideGroups.map((group) => ({
   <section class="guide-band">
     <div class="section-heading">
       <p class="eyebrow">Primeras lecturas</p>
-      <h2>Empieza por estas guias</h2>
+      <h2>Empieza por estas guías</h2>
     </div>
     <div class="guide-grid featured">
       {featured.map((page) => (
@@ -54,7 +54,7 @@ const groupedGuides = guideGroups.map((group) => ({
   <section class="content guide-content">
     <article class="article-body">
       <section class="panel">
-        <h2>Guias por tema</h2>
+        <h2>Guías por tema</h2>
         <div class="topic-list">
           {groupedGuides.map((group) => (
             <section class="topic-block" aria-labelledby={`topic-${group.toolSlug}`}>
@@ -78,8 +78,8 @@ const groupedGuides = guideGroups.map((group) => ({
       <section class="panel disclaimer">
         <h2>Uso recomendado</h2>
         <p>
-          Estas guias son informacion general para Mexico. Usa las calculadoras para obtener una
-          estimacion y revisa documentos laborales antes de firmar cualquier convenio o recibo.
+          Estas guías son información general para México. Usa las calculadoras para obtener una
+          estimación y revisa documentos laborales antes de firmar cualquier convenio o recibo.
         </p>
       </section>
     </article>

@@ -4,6 +4,7 @@ import { join, relative } from "node:path";
 const distDir = new URL("../dist/", import.meta.url).pathname;
 const htmlFiles = walk(distDir).filter((file) => file.endsWith(".html"));
 const failures = [];
+const unaccented = /(?<![\p{L}\p{N}_-])(Mexico|liquidacion|Liquidacion|calculo|calculos|dias|ano|anos|informacion|antiguedad|indemnizacion|nomina|pagina|guia|guias)(?![\p{L}\p{N}_-])/gu;
 
 for (const file of htmlFiles) {
   const html = readFileSync(file, "utf8");
@@ -14,6 +15,35 @@ for (const file of htmlFiles) {
   check(rel, count(html, /type="application\/ld\+json"/g) >= 2, "missing base JSON-LD");
   check(rel, !html.includes("https://example.com"), "contains example.com");
   check(rel, !html.includes("linanneil.github.io"), "contains old GitHub Pages domain");
+  check(rel, !html.includes('href="/index.html"') && !html.includes("href='/index.html'"), "links to /index.html");
+
+  for (const match of html.matchAll(/href="([^"]*calculadora-[^"]*)"/g)) {
+    const path = match[1].split(/[?#]/)[0];
+    check(rel, path.endsWith("/"), `calculator link missing trailing slash: ${match[1]}`);
+  }
+
+  const text = visibleText(html);
+  const broken = text.match(unaccented);
+  check(rel, !broken, `missing Spanish accents: ${(broken ?? []).slice(0, 8).join(", ")}`);
+}
+
+const home = readFileSync(join(distDir, "index.html"), "utf8");
+check("index.html", /<h1[^>]*>Calcula pagos laborales en minutos<\/h1>/.test(home), "homepage h1 missing");
+check("index.html", home.includes("<title>Calculadoras Laborales MX | Calculadoras laborales para México</title>"), "homepage title suffix changed");
+check("index.html", home.includes('property="og:site_name" content="Calculadoras Laborales MX"'), "og:site_name changed");
+check("index.html", home.includes('"/index.html"') && home.includes("location.replace(target+location.search+location.hash)"), "missing /index.html canonical script");
+check("index.html", home.includes('<link rel="canonical" href="https://herramientaslaborales.com/"'), "homepage canonical is not /");
+
+const about = readFileSync(join(distDir, "about/index.html"), "utf8");
+check("about/index.html", about.includes("<title>Acerca de Calculadoras Laborales MX | Calculadoras Laborales MX</title>"), "about title suffix changed");
+
+const finiquito = visibleText(readFileSync(join(distDir, "calculadora-finiquito/index.html"), "utf8"));
+const vacaciones = visibleText(readFileSync(join(distDir, "calculadora-vacaciones/index.html"), "utf8"));
+for (const word of ["México", "días", "liquidación", "cálculo"]) {
+  check("calculadora-finiquito/index.html", finiquito.includes(word), `finiquito missing ${word}`);
+}
+for (const word of ["México", "días", "año"]) {
+  check("calculadora-vacaciones/index.html", vacaciones.includes(word), `vacaciones missing ${word}`);
 }
 
 const sitemap = readFileSync(join(distDir, "sitemap.xml"), "utf8");
@@ -46,4 +76,17 @@ function count(input, pattern) {
 
 function check(file, condition, message) {
   if (!condition) failures.push({ file, message });
+}
+
+/**
+ * Texto visible y JSON-LD, sin href ni el id interno de cada calculadora.
+ * @param {string} html
+ * @returns {string}
+ */
+function visibleText(html) {
+  return html
+    .replace(/<script(?![^>]*application\/ld\+json)[\s\S]*?<\/script>/gi, " ")
+    .replace(/<style[\s\S]*?<\/style>/gi, " ")
+    .replace(/\s(?:href|src|data-tool)="[^"]*"/gi, " ")
+    .replace(/https?:\/\/[^\s"<]+/g, " ");
 }

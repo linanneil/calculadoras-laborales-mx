@@ -19,7 +19,7 @@ const related = getRelatedPages(page, 5);
 <BaseLayout title={page.title} description={page.description} slug={page.slug} faq={page.faqs} page={page}>
   <section class="hero">
     <div>
-      <p class="eyebrow">{page.kind === "tool" ? "Calculadora gratuita" : page.kind === "legal" ? "Informacion del sitio" : "Guia laboral"}</p>
+      <p class="eyebrow">{page.kind === "tool" ? "Calculadora gratuita" : page.kind === "legal" ? "Información del sitio" : "Guía laboral"}</p>
       <h1>{page.h1}</h1>
       <p class="lead">{page.intro}</p>
     </div>
@@ -30,7 +30,7 @@ const related = getRelatedPages(page, 5);
     <article class="article-body">
       {page.quickAnswer && (
         <section class="panel quick-answer">
-          <h2>Respuesta rapida</h2>
+          <h2>Respuesta rápida</h2>
           <p>{page.quickAnswer}</p>
         </section>
       )}
@@ -55,7 +55,7 @@ const related = getRelatedPages(page, 5);
 
       {page.formulaCards && (
         <section class="panel formulas">
-          <h2>Formula de calculo</h2>
+          <h2>Fórmula de cálculo</h2>
           <div class="formula-grid">
             {page.formulaCards.map((item) => (
               <article>
@@ -65,7 +65,7 @@ const related = getRelatedPages(page, 5);
               </article>
             ))}
           </div>
-          <p class="muted">Las formulas muestran la logica base del estimador. El resultado final puede variar por contrato, prestaciones superiores, impuestos o documentos del caso.</p>
+          <p class="muted">Las fórmulas muestran la lógica base del estimador. El resultado final puede variar por contrato, prestaciones superiores, impuestos o documentos del caso.</p>
         </section>
       )}
 
@@ -84,7 +84,7 @@ const related = getRelatedPages(page, 5);
       {page.sources && (
         <section class="panel sources">
           <h2>Fuentes oficiales consultadas</h2>
-          <p>Usamos estas referencias como base editorial. El contenido se resume para hacerlo facil de entender.</p>
+          <p>Usamos estas referencias como base editorial. El contenido se resume para hacerlo fácil de entender.</p>
           <ul>
             {page.sources.map((source) => (
               <li><a href={source.url} target="_blank" rel="noreferrer">{source.label}</a></li>
@@ -96,14 +96,14 @@ const related = getRelatedPages(page, 5);
       <section class="panel disclaimer">
         <h2>Aviso importante</h2>
         <p>
-          Estos calculos son estimaciones informativas para Mexico y fueron actualizados el {updatedDate}. No sustituyen asesoria legal, fiscal o contable.
+          Estos cálculos son estimaciones informativas para México y fueron actualizados el {updatedDate}. No sustituyen asesoría legal, fiscal o contable.
         </p>
       </section>
     </article>
     <aside>
       <AdPlaceholder />
       <div class="panel related">
-        <h2>Tambien te puede servir</h2>
+        <h2>También te puede servir</h2>
         {related.map((item) => <a href={pagePath(item.slug)}>{item.h1}</a>)}
       </div>
     </aside>

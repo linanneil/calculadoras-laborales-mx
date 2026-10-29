@@ -92,7 +92,7 @@ export function calculateVacations(input: LaborInput): LaborResult {
   return result(
     [
       { label: "Vacaciones proporcionales", amount: vacationAmount },
-      { label: "Prima vacacional minima", amount: premium },
+      { label: "Prima vacacional mínima", amount: premium },
     ],
     input,
   );
@@ -123,9 +123,9 @@ export function calculateLiquidation(input: LaborInput): LaborResult {
   const finiquito = calculateFiniquito(input).total;
   return result(
     [
-      { label: "Indemnizacion constitucional estimada", amount: constitutional },
-      { label: "20 dias por ano trabajado", amount: twentyDays },
-      { label: "Prima de antiguedad estimada", amount: seniorityPremium },
+      { label: "Indemnización constitucional estimada", amount: constitutional },
+      { label: "20 días por año trabajado", amount: twentyDays },
+      { label: "Prima de antigüedad estimada", amount: seniorityPremium },
       { label: "Finiquito estimado", amount: finiquito },
     ],
     input,

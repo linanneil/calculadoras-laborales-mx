@@ -91,11 +91,11 @@ function publisherSchema(): JsonLd {
     },
     areaServed: {
       "@type": "Country",
-      name: "Mexico",
+      name: "México",
     },
     knowsAbout: [
-      "finiquito en Mexico",
-      "liquidacion laboral",
+      "finiquito en México",
+      "liquidación laboral",
       "aguinaldo proporcional",
       "vacaciones proporcionales",
       "salario diario integrado",
