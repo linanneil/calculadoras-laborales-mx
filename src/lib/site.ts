@@ -1,14 +1,14 @@
 export const SITE = {
   name: "Calculadoras Laborales MX",
   description:
-    "Herramientas gratuitas para estimar finiquito, liquidacion, aguinaldo, vacaciones y salario diario integrado en Mexico.",
+    "Herramientas gratuitas para estimar finiquito, liquidación, aguinaldo, vacaciones y salario diario integrado en México.",
   url: import.meta.env.SITE || "https://herramientaslaborales.com",
   locale: "es-MX",
   author: "Calculadoras Laborales MX",
   contactEmail: "service@herramientaslaborales.com",
 };
 
-export const BASE_PATH = import.meta.env.BASE_URL.replace(/\/$/, "");
+export const BASE_PATH = (import.meta.env.BASE_URL ?? "/").replace(/\/$/, "");
 
 export function withBase(path: string): string {
   if (path.startsWith("http") || path.startsWith("mailto:") || path.startsWith("#")) return path;

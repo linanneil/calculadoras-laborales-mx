@@ -3,6 +3,7 @@ import "remixicon/fonts/remixicon.css";
 import { analytics, pagePath, SITE, updatedDate, withBase } from "../lib/site";
 import { legalPages, toolPages, type SitePage } from "../lib/pages";
 import { buildStructuredData } from "../lib/seo";
+import { indexHtmlRedirectScript } from "../lib/indexRedirect.mjs";
 
 type Props = {
   title: string;
@@ -34,6 +35,7 @@ const faqJson =
 <html lang="es-MX">
   <head>
     <meta charset="utf-8" />
+    {slug === "" && <script is:inline set:html={indexHtmlRedirectScript(import.meta.env.BASE_URL)} />}
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="generator" content={Astro.generator} />
     <link rel="icon" type="image/svg+xml" href={withBase("/favicon.svg")} />
@@ -64,16 +66,16 @@ const faqJson =
         <span class="brand-mark">MX</span>
         <span>{SITE.name}</span>
       </a>
-      <nav aria-label="Navegacion principal">
-        <a href={pagePath("guias")}>Guias</a>
+      <nav aria-label="Navegación principal">
+        <a href={pagePath("guias")}>Guías</a>
         {toolPages.slice(0, 4).map((page) => (
           <a href={pagePath(page.slug)}>
-            {page.tool === "finiquito" ? "Finiquito" : page.tool === "liquidacion" ? "Liquidacion" : page.tool === "aguinaldo" ? "Aguinaldo" : "Vacaciones"}
+            {page.tool === "finiquito" ? "Finiquito" : page.tool === "liquidacion" ? "Liquidación" : page.tool === "aguinaldo" ? "Aguinaldo" : "Vacaciones"}
           </a>
         ))}
       </nav>
-      <div class="header-trust" aria-label="Caracteristicas del sitio">
-        <span><i class="ri-question-line" aria-hidden="true"></i> Guias y articulos</span>
+      <div class="header-trust" aria-label="Características del sitio">
+        <span><i class="ri-question-line" aria-hidden="true"></i> Guías y artículos</span>
         <span><i class="ri-shield-check-line" aria-hidden="true"></i> 100% Gratis</span>
       </div>
     </header>
@@ -83,9 +85,9 @@ const faqJson =
     <footer class="site-footer">
       <div>
         <strong>{SITE.name}</strong>
-        <p>Estimaciones laborales para Mexico. Ultima actualizacion: {updatedDate}.</p>
+        <p>Estimaciones laborales para México. Última actualización: {updatedDate}.</p>
       </div>
-      <nav aria-label="Paginas legales">
+      <nav aria-label="Páginas legales">
         {legalPages.map((page) => <a href={pagePath(page.slug)}>{page.h1}</a>)}
       </nav>
     </footer>
