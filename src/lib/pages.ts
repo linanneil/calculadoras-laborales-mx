@@ -117,7 +117,7 @@ export const pages: SitePage[] = [
     slug: "calculadora-finiquito",
     kind: "tool",
     tool: "finiquito",
-    title: "Calculadora de finiquito 2026 México | Estimador gratis",
+    title: "Calculadora de finiquito 2026 México: conceptos y ejemplos",
     description:
       "Calcula un finiquito estimado en México con salario pendiente, aguinaldo proporcional, vacaciones y prima vacacional.",
     h1: "Calculadora de finiquito 2026",
@@ -166,7 +166,7 @@ export const pages: SitePage[] = [
     slug: "calculadora-liquidacion",
     kind: "tool",
     tool: "liquidacion",
-    title: "Calculadora de liquidación 2026 México | Despido e indemnización",
+    title: "Calculadora de liquidación 2026: despido e indemnización",
     description:
       "Estima liquidación por despido en México con indemnización constitucional, 20 días por año, prima de antigüedad y finiquito.",
     h1: "Calculadora de liquidación por despido",
@@ -215,9 +215,9 @@ export const pages: SitePage[] = [
     slug: "calculadora-aguinaldo",
     kind: "tool",
     tool: "aguinaldo",
-    title: "Calculadora de aguinaldo proporcional 2026 México",
+    title: "Calculadora de aguinaldo 2026 México: proporcional e ISR",
     description:
-      "Calcula aguinaldo proporcional en México con base en 15 días mínimos y días trabajados durante el año.",
+      "Calcula aguinaldo proporcional en México con base en 15 días mínimos y días trabajados durante el año. Considera la parte exenta de ISR (30 UMA).",
     h1: "Calculadora de aguinaldo proporcional",
     intro:
       "Calcula un aguinaldo estimado con el mínimo legal de 15 días para trabajadores del sector privado en México.",
@@ -254,7 +254,7 @@ export const pages: SitePage[] = [
     slug: "calculadora-vacaciones",
     kind: "tool",
     tool: "vacaciones",
-    title: "Calculadora de vacaciones proporcionales 2026 México",
+    title: "Calculadora de vacaciones 2026 México y prima vacacional",
     description:
       "Estima vacaciones proporcionales y prima vacacional mínima en México con la tabla vigente de días de vacaciones.",
     h1: "Calculadora de vacaciones proporcionales",
@@ -303,7 +303,7 @@ export const pages: SitePage[] = [
     slug: "calculadora-sueldo-diario-integrado",
     kind: "tool",
     tool: "sdi",
-    title: "Calculadora de salario diario integrado 2026 México",
+    title: "Calculadora de salario diario integrado (SDI) 2026 México",
     description:
       "Calcula salario diario integrado estimado con aguinaldo, vacaciones y prima vacacional mínima en México.",
     h1: "Calculadora de salario diario integrado",
