@@ -17,6 +17,12 @@ const { title, description, slug = "", faq = [], page } = Astro.props;
 const canonicalPath = pagePath(slug);
 const canonical = new URL(canonicalPath, Astro.site ?? SITE.url).toString();
 const structuredData = buildStructuredData({ title, description, canonical, slug, page });
+/**
+ * Cliente único de AdSense Auto ads. Se inyecta tal cual en el head compartido
+ * para que el compilador no lo empaquete ni lo duplique.
+ */
+const adsenseAutoAdsScript = `<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6934871813883162"
+     crossorigin="anonymous"></script>`;
 const faqJson =
   faq.length > 0
     ? {
@@ -35,6 +41,7 @@ const faqJson =
 <html lang="es-MX">
   <head>
     <meta charset="utf-8" />
+    <Fragment set:html={adsenseAutoAdsScript} />
     {slug === "" && <script is:inline set:html={indexHtmlRedirectScript(import.meta.env.BASE_URL)} />}
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="generator" content={Astro.generator} />
