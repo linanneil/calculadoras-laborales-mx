@@ -47,7 +47,7 @@ export function buildStructuredData({ title, description, canonical, slug, page 
       isAccessibleForFree: true,
       description,
       publisher: { "@id": organization["@id"] },
-      dateModified: updatedIsoDate,
+      dateModified: page.updatedIso ?? updatedIsoDate,
     });
   }
 

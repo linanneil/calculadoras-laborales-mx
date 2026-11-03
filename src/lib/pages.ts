@@ -1,5 +1,30 @@
+import {
+  AGUINALDO_DESCRIPTION,
+  AGUINALDO_DISCLAIMER,
+  AGUINALDO_QUICK_ANSWER,
+  AGUINALDO_QUICK_ANSWER_HTML,
+  aguinaldoFaqs,
+  aguinaldoFormulaCards,
+  aguinaldoSections,
+  aguinaldoSources,
+} from "./aguinaldoContent";
+
 export type PageKind = "tool" | "article" | "legal";
 export type ToolKind = "finiquito" | "liquidacion" | "aguinaldo" | "vacaciones" | "sdi";
+
+/** Pregunta frecuente. `answer` alimenta el JSON-LD; `answerHtml` es el texto visible si hay enlace. */
+export type PageFaq = {
+  question: string;
+  answer: string;
+  answerHtml?: string;
+};
+
+/** Bloque editorial. Si hay `html`, la plantilla lo muestra en lugar del párrafo `body`. */
+export type PageSection = {
+  title: string;
+  body: string;
+  html?: string;
+};
 
 export type SitePage = {
   slug: string;
@@ -10,10 +35,16 @@ export type SitePage = {
   h1: string;
   intro: string;
   quickAnswer?: string;
-  sections: { title: string; body: string }[];
+  /** HTML de la respuesta rápida. El texto plano sigue en `quickAnswer`. */
+  quickAnswerHtml?: string;
+  sections: PageSection[];
   formulaCards?: { label: string; formula: string; note: string }[];
-  faqs?: { question: string; answer: string }[];
+  faqs?: PageFaq[];
   sources?: { label: string; url: string }[];
+  /** Fecha ISO de revisión de esta página, si difiere de la fecha global del sitio. */
+  updatedIso?: string;
+  /** Sustituye el aviso genérico al pie del artículo. */
+  disclaimer?: string;
 };
 
 const officialSources = [
@@ -44,7 +75,7 @@ const commonFaq = [
   },
 ];
 
-const toolFaqs: Record<ToolKind, { question: string; answer: string }[]> = {
+const toolFaqs: Record<ToolKind, PageFaq[]> = {
   finiquito: [
     {
       question: "¿Cuánto me toca de finiquito si renuncio en México?",
@@ -71,19 +102,7 @@ const toolFaqs: Record<ToolKind, { question: string; answer: string }[]> = {
     },
     ...commonFaq,
   ],
-  aguinaldo: [
-    {
-      question: "¿Tengo derecho a aguinaldo si renuncio antes de diciembre?",
-      answer:
-        "Si trabajaste parte del año, normalmente se revisa aguinaldo proporcional por los días trabajados. La calculadora usa el mínimo de 15 días salvo que captures una prestación mayor.",
-    },
-    {
-      question: "¿Qué datos necesito para calcular aguinaldo proporcional?",
-      answer:
-        "Necesitas salario diario, días de aguinaldo que otorga tu empresa y días trabajados dentro del año. En año bisiesto se usa divisor de 366 días.",
-    },
-    ...commonFaq,
-  ],
+  aguinaldo: aguinaldoFaqs,
   vacaciones: [
     {
       question: "¿Qué pasa con mis vacaciones si renuncio?",
@@ -216,39 +235,18 @@ export const pages: SitePage[] = [
     kind: "tool",
     tool: "aguinaldo",
     title: "Calculadora de aguinaldo 2026 México: proporcional e ISR",
-    description:
-      "Calcula aguinaldo proporcional en México con base en 15 días mínimos y días trabajados durante el año. Considera la parte exenta de ISR (30 UMA).",
+    description: AGUINALDO_DESCRIPTION,
     h1: "Calculadora de aguinaldo proporcional",
     intro:
-      "Calcula un aguinaldo estimado con el mínimo legal de 15 días para trabajadores del sector privado en México.",
-    quickAnswer:
-      "El aguinaldo proporcional se calcula con salario diario, días de aguinaldo y días trabajados dentro del año. Si renuncias o sales antes de diciembre, puedes estimar la parte proporcional con base en los días efectivamente trabajados.",
-    sections: [
-      {
-        title: "Fórmula general",
-        body:
-          "Aguinaldo proporcional = salario diario x 15 días mínimos x días efectivamente trabajados en el año / días del año. En año bisiesto la calculadora usa 366 días.",
-      },
-      {
-        title: "Cuándo se usa",
-        body:
-          "Sirve para estimar el aguinaldo al cierre del año o cuando la relación laboral termina antes de diciembre. El artículo 87 de la LFT reconoce pago proporcional para quien no cumplió el año completo.",
-      },
-    ],
-    formulaCards: [
-      {
-        label: "Aguinaldo anual mínimo",
-        formula: "salario diario x 15 días",
-        note: "La LFT reconoce 15 días como mínimo para trabajadores del sector privado.",
-      },
-      {
-        label: "Aguinaldo proporcional",
-        formula: "salario diario x 15 x días trabajados / días del año",
-        note: "En año bisiesto el divisor es 366; en otros años, 365.",
-      },
-    ],
-    faqs: toolFaqs.aguinaldo,
-    sources: officialSources,
+      "Calcula un aguinaldo bruto estimado con el mínimo legal de 15 días para trabajadores del sector privado en México. Captura el salario diario y las fechas; la herramienta no descuenta ISR.",
+    quickAnswer: AGUINALDO_QUICK_ANSWER,
+    quickAnswerHtml: AGUINALDO_QUICK_ANSWER_HTML,
+    sections: aguinaldoSections(),
+    formulaCards: aguinaldoFormulaCards,
+    faqs: aguinaldoFaqs,
+    sources: aguinaldoSources,
+    updatedIso: "2026-11-03",
+    disclaimer: AGUINALDO_DISCLAIMER,
   },
   {
     slug: "calculadora-vacaciones",
