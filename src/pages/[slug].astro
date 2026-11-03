@@ -31,14 +31,18 @@ const related = getRelatedPages(page, 5);
       {page.quickAnswer && (
         <section class="panel quick-answer">
           <h2>Respuesta rápida</h2>
-          <p>{page.quickAnswer}</p>
+          {page.quickAnswerHtml ? (
+            <div class="rich-copy" set:html={page.quickAnswerHtml} />
+          ) : (
+            <p>{page.quickAnswer}</p>
+          )}
         </section>
       )}
 
       {page.sections.map((section) => (
         <section class="panel">
           <h2>{section.title}</h2>
-          <p>{section.body}</p>
+          {section.html ? <div class="rich-copy" set:html={section.html} /> : <p>{section.body}</p>}
         </section>
       ))}
 
@@ -75,7 +79,7 @@ const related = getRelatedPages(page, 5);
           {page.faqs.map((faq) => (
             <details>
               <summary>{faq.question}</summary>
-              <p>{faq.answer}</p>
+              {faq.answerHtml ? <p set:html={faq.answerHtml} /> : <p>{faq.answer}</p>}
             </details>
           ))}
         </section>
@@ -96,7 +100,8 @@ const related = getRelatedPages(page, 5);
       <section class="panel disclaimer">
         <h2>Aviso importante</h2>
         <p>
-          Estos cálculos son estimaciones informativas para México y fueron actualizados el {updatedDate}. No sustituyen asesoría legal, fiscal o contable.
+          {page.disclaimer ??
+            `Estos cálculos son estimaciones informativas para México y fueron actualizados el ${updatedDate}. No sustituyen asesoría legal, fiscal o contable.`}
         </p>
       </section>
     </article>
@@ -162,6 +167,63 @@ const related = getRelatedPages(page, 5);
     color: var(--text);
     font-size: 1.05rem;
     font-weight: 650;
+  }
+
+  :global(.quick-answer .rich-copy p) {
+    margin: 0;
+    color: var(--text);
+    font-size: 1.05rem;
+    font-weight: 650;
+  }
+
+  :global(.rich-copy ul),
+  :global(.rich-copy ol) {
+    margin: 8px 0 14px;
+    padding-left: 1.25rem;
+  }
+
+  :global(.rich-copy li) {
+    margin: 6px 0;
+  }
+
+  :global(.rich-copy li ul),
+  :global(.rich-copy li ol) {
+    margin-bottom: 0;
+  }
+
+  :global(.rich-copy blockquote) {
+    margin: 14px 0;
+    padding: 12px 14px;
+    border-left: 4px solid var(--accent);
+    background: var(--surface-muted);
+  }
+
+  :global(.rich-copy blockquote p:last-child) {
+    margin-bottom: 0;
+  }
+
+  :global(.rich-copy .table-wrap) {
+    overflow-x: auto;
+    margin: 12px 0 16px;
+  }
+
+  :global(.rich-copy table) {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  :global(.rich-copy th),
+  :global(.rich-copy td) {
+    padding: 8px 10px;
+    border-bottom: 1px solid var(--line);
+    text-align: left;
+  }
+
+  :global(.rich-copy td:last-child),
+  :global(.rich-copy th:last-child) {
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
   }
 
   .formulas h2 {
