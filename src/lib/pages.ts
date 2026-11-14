@@ -8,6 +8,7 @@ import {
   aguinaldoSections,
   aguinaldoSources,
 } from "./aguinaldoContent";
+import { pagePath } from "./site";
 
 export type PageKind = "tool" | "article" | "legal";
 export type ToolKind = "finiquito" | "liquidacion" | "aguinaldo" | "vacaciones" | "sdi";
@@ -494,8 +495,11 @@ function uniquePages(items: SitePage[]): SitePage[] {
   });
 }
 
-function getArticleSections(slug: string): { title: string; body: string }[] {
-  const sections: Record<string, { title: string; body: string }[]> = {
+function getArticleSections(slug: string): PageSection[] {
+  const aguinaldoTool = pagePath("calculadora-aguinaldo");
+  const daysGuide = pagePath("aguinaldo-por-dias-trabajados");
+  const finiquitoTool = pagePath("calculadora-finiquito");
+  const sections: Record<string, PageSection[]> = {
   "finiquito-renuncia-voluntaria": [
     {
       title: "Qué te corresponde al renunciar",
@@ -993,6 +997,14 @@ function getArticleSections(slug: string): { title: string; body: string }[] {
       body:
         "El resultado puede ser mayor si tu contrato ofrece más de 15 días de aguinaldo o si hay reglas internas superiores.",
     },
+    {
+      title: "Cómo estimarlo en la calculadora",
+      body:
+        "La fórmula de esta guía se puede correr en la calculadora de aguinaldo de Calculadoras Laborales MX. Captura el salario diario bruto, la fecha de ingreso y la fecha de salida o cálculo, y pulsa «Calcular estimación». Esa pantalla fija 15 días de aguinaldo: no tiene un campo para capturar 20, 30 u otra cifra, y el resultado es un importe bruto (no descuenta ISR). Si tu contrato o contrato colectivo otorga más de 15 días, toma el resultado y multiplícalo por (días de tu empresa ÷ 15), tal como se explica en esa misma página.",
+      html:
+        `<p>La fórmula de esta guía se puede correr en la <a href="${aguinaldoTool}">calculadora de aguinaldo</a> de Calculadoras Laborales MX. Captura el salario diario bruto, la fecha de ingreso y la fecha de salida o cálculo, y pulsa «Calcular estimación».</p>
+<p>Esa pantalla fija 15 días de aguinaldo: no tiene un campo para capturar 20, 30 u otra cifra, y el resultado es un importe bruto (no descuenta ISR). Si tu contrato o contrato colectivo otorga más de 15 días, toma el resultado y multiplícalo por (días de tu empresa ÷ 15), tal como se explica en esa misma página.</p>`,
+    },
   ],
   "checklist-antes-firmar-finiquito": [
     {
@@ -1091,9 +1103,19 @@ function getArticleSections(slug: string): { title: string; body: string }[] {
         "Usa salario diario x días de aguinaldo x días trabajados en el año / días del año. Si tu contrato ofrece más de 15 días, sustituye ese dato en la estimación.",
     },
     {
+      title: "Cómo estimarlo en la calculadora",
+      body:
+        "Si sales antes del pago anual, puedes estimar la parte proporcional con la calculadora de aguinaldo de Calculadoras Laborales MX. Captura el salario diario bruto y, en «Fecha de salida o cálculo», el día en que termina la relación laboral; luego pulsa «Calcular estimación». La herramienta aplica 15 días y muestra un bruto, sin descontar ISR. Si tu contrato ofrece más de 15 días, toma ese resultado y multiplícalo por (días de tu empresa ÷ 15). El detalle de la fórmula por días del año está en aguinaldo por días trabajados.",
+      html:
+        `<p>Si sales antes del pago anual, puedes estimar la parte proporcional con la <a href="${aguinaldoTool}">calculadora de aguinaldo</a> de Calculadoras Laborales MX. Captura el salario diario bruto y, en «Fecha de salida o cálculo», el día en que termina la relación laboral; luego pulsa «Calcular estimación».</p>
+<p>La herramienta aplica 15 días y muestra un bruto, sin descontar ISR. Si tu contrato ofrece más de 15 días, toma ese resultado y multiplícalo por (días de tu empresa ÷ 15). El detalle de la fórmula por días del año está en <a href="${daysGuide}">aguinaldo por días trabajados</a>.</p>`,
+    },
+    {
       title: "Dónde aparece",
       body:
-        "En una renuncia, el aguinaldo proporcional suele formar parte del finiquito. Pide que aparezca separado del salario pendiente y de vacaciones para poder verificarlo.",
+        "En una renuncia, el aguinaldo proporcional suele formar parte del finiquito. Pide que aparezca separado del salario pendiente y de vacaciones para poder verificarlo. Para estimar el finiquito en conjunto, puedes usar la calculadora de finiquito.",
+      html:
+        `<p>En una renuncia, el aguinaldo proporcional suele formar parte del finiquito. Pide que aparezca separado del salario pendiente y de vacaciones para poder verificarlo. Para estimar el finiquito en conjunto, puedes usar la <a href="${finiquitoTool}">calculadora de finiquito</a>.</p>`,
     },
   ],
   "vacaciones-si-renuncio": [
