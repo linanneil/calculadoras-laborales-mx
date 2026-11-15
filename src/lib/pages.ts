@@ -701,12 +701,22 @@ function getArticleSections(slug: string): PageSection[] {
     {
       title: "Fórmula",
       body:
-        "Aguinaldo proporcional = salario diario x 15 x días trabajados en el año / días del año. La calculadora toma como inicio el mayor entre tu fecha de ingreso y el 1 de enero.",
+        "Aguinaldo proporcional = salario diario x 15 x días trabajados en el año / días del año. La calculadora de aguinaldo toma como inicio el mayor entre tu fecha de ingreso y el 1 de enero.",
+      html:
+        `<p>Aguinaldo proporcional = salario diario x 15 x días trabajados en el año / días del año. La <a href="${pagePath("calculadora-aguinaldo")}">calculadora de aguinaldo</a> toma como inicio el mayor entre tu fecha de ingreso y el 1 de enero.</p>`,
     },
     {
       title: "Errores comunes",
       body:
         "No uses meses completos si trabajaste solo parte del mes. Cuenta días efectivamente trabajados en el año y verifica si tu contrato ofrece más de 15 días.",
+    },
+    {
+      title: "Calculadora y guía de renuncia",
+      body:
+        "Esta página resume la fórmula proporcional con el mínimo de 15 días y los errores frecuentes cuando la relación termina antes de diciembre. Para estimar esos 15 días con la herramienta del sitio, usa la calculadora de aguinaldo. Si te interesa cómo encaja el aguinaldo proporcional en el finiquito al renunciar, y cómo capturar las fechas en la calculadora, consulta aguinaldo si renuncio antes de diciembre.",
+      html:
+        `<p>Esta página resume la fórmula proporcional con el mínimo de 15 días y los errores frecuentes cuando la relación termina antes de diciembre. Para estimar esos 15 días con la herramienta del sitio, usa la <a href="${pagePath("calculadora-aguinaldo")}">calculadora de aguinaldo</a>.</p>
+<p>Si te interesa cómo encaja el aguinaldo proporcional en el finiquito al renunciar, y cómo capturar las fechas en la calculadora, consulta <a href="${pagePath("aguinaldo-si-renuncio-antes-de-diciembre")}">aguinaldo si renuncio antes de diciembre</a>.</p>`,
     },
   ],
   "prima-vacacional-mexico": [
