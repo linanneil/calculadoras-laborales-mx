@@ -691,6 +691,13 @@ function getArticleSections(slug: string): PageSection[] {
       body:
         "La prima vacacional mínima es 25% sobre el importe de vacaciones. Algunas empresas dan una prima mayor; si es tu caso, el pago real puede ser superior.",
     },
+    {
+      title: "Cómo estimarlo en la calculadora",
+      body:
+        "Esta página resume la fórmula proporcional y la prima vacacional mínima del 25%. Para estimar esos importes con la herramienta del sitio, usa la calculadora de vacaciones. Captura el salario diario bruto, la fecha de ingreso y la fecha de salida o cálculo. Como indica esa página, el resultado cubre las vacaciones proporcionales del ciclo de servicio actual; si tienes días de ciclos anteriores no pagados o no disfrutados, revísalos por separado con tus recibos y contrato.",
+      html:
+        `<p>Esta página resume la fórmula proporcional y la prima vacacional mínima del 25%. Para estimar esos importes con la herramienta del sitio, usa la <a href="${pagePath("calculadora-vacaciones")}">calculadora de vacaciones</a>. Captura el salario diario bruto, la fecha de ingreso y la fecha de salida o cálculo. Como indica esa página, el resultado cubre las vacaciones proporcionales del ciclo de servicio actual; si tienes días de ciclos anteriores no pagados o no disfrutados, revísalos por separado con tus recibos y contrato.</p>`,
+    },
   ],
   "aguinaldo-proporcional-renuncia": [
     {
