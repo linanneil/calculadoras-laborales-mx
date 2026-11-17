@@ -752,7 +752,11 @@ function getArticleSections(slug: string): PageSection[] {
     {
       title: "Ejemplo",
       body:
-        "Con salario diario de $500 MXN y primer año de antigüedad, el SDI estimado será mayor que $500 porque suma la parte diaria de aguinaldo y vacaciones con prima.",
+        "Ejemplo ilustrativo con datos supuestos. Supongamos un salario diario bruto de $500 MXN, 1 año de antigüedad completo, fecha de ingreso del 15 de enero de 2025 y fecha de salida o cálculo del 15 de enero de 2026. Puedes introducir estos datos en la calculadora de salario diario integrado. Con esos datos, la calculadora muestra un factor de integración de 1.0493150684931507 y un SDI estimado de $524.66 MXN. La operación es salario diario × factor de integración. El factor es el multiplicador sin redondear que usa el cálculo; la pantalla muestra el SDI redondeado a centavos. Esta aproximación usa prestaciones mínimas y no incluye variables, bonos, comisiones ni prestaciones superiores. El resultado es una estimación educativa en importes brutos y no sustituye una revisión de nómina o una asesoría legal o fiscal.",
+      html:
+        `<p><strong>Ejemplo ilustrativo con datos supuestos.</strong> Supongamos un salario diario bruto de $500 MXN, 1 año de antigüedad completo, fecha de ingreso del 15 de enero de 2025 y fecha de salida o cálculo del 15 de enero de 2026. Puedes introducir estos datos en la <a href="${pagePath("calculadora-sueldo-diario-integrado")}">calculadora de salario diario integrado</a>.</p>
+<p>Con esos datos, la calculadora muestra un factor de integración de 1.0493150684931507 y un SDI estimado de $524.66 MXN. La operación es salario diario × factor de integración. El factor es el multiplicador sin redondear que usa el cálculo; la pantalla muestra el SDI redondeado a centavos.</p>
+<p>Esta aproximación usa prestaciones mínimas y no incluye variables, bonos, comisiones ni prestaciones superiores. El resultado es una estimación educativa en importes brutos y no sustituye una revisión de nómina o una asesoría legal o fiscal.</p>`,
     },
     {
       title: "Uso responsable",
