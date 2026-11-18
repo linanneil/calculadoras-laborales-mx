@@ -42,10 +42,13 @@ const today = "2026-06-15";
       </label>
     )}
     {tool === "sdi" && (
-      <label>
-        Años de antigüedad completos
-        <span class="input-shell"><i class="ri-briefcase-line" aria-hidden="true"></i><input name="years" type="number" min="1" step="1" value="1" inputmode="numeric" /></span>
-      </label>
+      <>
+        <label>
+          Años de antigüedad completos
+          <span class="input-shell"><i class="ri-briefcase-line" aria-hidden="true"></i><input id="sdi-years" name="years" type="number" min="1" step="1" value="1" inputmode="numeric" aria-describedby="sdi-years-note" /></span>
+        </label>
+        <p id="sdi-years-note" class="muted">El cálculo usa «Años de antigüedad completos». El formulario no actualiza automáticamente este campo a partir de las fechas de ingreso o de salida; revísalo antes de calcular.</p>
+      </>
     )}
     <details>
       <summary>Opciones avanzadas</summary>
