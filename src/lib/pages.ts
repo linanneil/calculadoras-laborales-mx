@@ -465,7 +465,26 @@ export function getPageBySlug(slug: string): SitePage | undefined {
   return pages.find((page) => page.slug === slug);
 }
 
+/**
+ * Sidebar order for the prima-vacacional finiquito guide.
+ * Titles stay the existing page h1 values; this list only chooses slugs.
+ */
+const PRIMA_VACACIONAL_FINIQUITO_RELATED = [
+  "calculadora-vacaciones",
+  "calculadora-finiquito",
+  "prima-vacacional-mexico",
+  "vacaciones-proporcionales-mexico",
+  "vacaciones-no-disfrutadas-finiquito",
+];
+
 export function getRelatedPages(page: SitePage, limit = 4): SitePage[] {
+  if (page.slug === "prima-vacacional-en-finiquito") {
+    const overridden = PRIMA_VACACIONAL_FINIQUITO_RELATED.map((slug) => getPageBySlug(slug)).filter(
+      (item): item is SitePage => Boolean(item),
+    );
+    return uniquePages(overridden).slice(0, limit);
+  }
+
   const group = guideGroups.find((item) => item.slugs.includes(page.slug) || item.toolSlug === page.slug);
   const matchingToolPage = page.tool ? toolPages.find((item) => item.tool === page.tool && item.slug !== page.slug) : undefined;
   const groupedSlugs = group ? orderedRelatedSlugs(page.slug, group.toolSlug, group.slugs) : [];
