@@ -518,6 +518,7 @@ function getArticleSections(slug: string): PageSection[] {
   const aguinaldoTool = pagePath("calculadora-aguinaldo");
   const daysGuide = pagePath("aguinaldo-por-dias-trabajados");
   const finiquitoTool = pagePath("calculadora-finiquito");
+  const vacacionesTool = pagePath("calculadora-vacaciones");
   const sections: Record<string, PageSection[]> = {
   "finiquito-renuncia-voluntaria": [
     {
@@ -1172,7 +1173,9 @@ function getArticleSections(slug: string): PageSection[] {
     {
       title: "Ciclos anteriores",
       body:
-        "La calculadora estima el ciclo actual. Si hay vacaciones no disfrutadas de años anteriores, agregalas al analisis con recibos, solicitudes aprobadas o constancias internas.",
+        "Para estimar los importes proporcionales de vacaciones y prima vacacional del ciclo de servicio actual, usa la Calculadora de vacaciones proporcionales con tu salario diario bruto, fecha de ingreso y fecha de salida o cálculo. La herramienta no descuenta las vacaciones ya tomadas ni suma saldos de años anteriores. Revisa esos días por separado con recibos, solicitudes aprobadas o constancias internas.",
+      html:
+        `<p>Para estimar los importes proporcionales de vacaciones y prima vacacional del ciclo de servicio actual, usa la <a href="${vacacionesTool}">Calculadora de vacaciones proporcionales</a> con tu salario diario bruto, fecha de ingreso y fecha de salida o cálculo. La herramienta no descuenta las vacaciones ya tomadas ni suma saldos de años anteriores. Revisa esos días por separado con recibos, solicitudes aprobadas o constancias internas.</p>`,
     },
   ],
   "me-pueden-obligar-a-firmar-renuncia": [
