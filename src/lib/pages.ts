@@ -198,7 +198,7 @@ export const pages: SitePage[] = [
       {
         title: "Conceptos estimados",
         body:
-          "En un despido, PROFEDET indica que la persona trabajadora puede solicitar reinstalación o indemnización de tres meses, además de prestaciones adeudadas como vacaciones, prima vacacional y aguinaldo. Esta calculadora muestra un escenario estimado con indemnización.",
+          "En un despido, PROFEDET indica que la persona trabajadora puede solicitar reinstalación o indemnización de tres meses, además de prestaciones adeudadas como vacaciones, prima vacacional y aguinaldo. Esta calculadora muestra un escenario estimado con indemnización. La calculadora suma los conceptos del desglose sin preguntar por la causa de separación ni excluir automáticamente los que no correspondan a tu caso. Verifica cuáles son aplicables antes de usar el total como referencia.",
       },
       {
         title: "Prima de antigüedad",
